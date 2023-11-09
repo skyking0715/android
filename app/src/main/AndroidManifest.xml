@@ -10,8 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HairPick"
+        android:theme="@style/Theme.HairPick."
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="MAP_API" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -21,6 +26,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Mainpage1"
+            android:parentActivityName=".MainActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".Client3"
+            android:parentActivityName=".MainActivity"
+            android:exported="false"
+            />
+        <activity
+            android:name=".Client4"
+            android:parentActivityName=".MainActivity"
+            android:exported="false"
+            />
+
+        <activity
+            android:name=".Stylist4"
+            android:parentActivityName=".MainActivity"
+            android:exported="false"
+            />
+
+
     </application>
 
 </manifest>

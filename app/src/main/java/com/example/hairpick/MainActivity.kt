@@ -1,5 +1,6 @@
 package com.example.hairpick
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -13,16 +14,31 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
 
 
-        val main1 = MainOneBinding.inflate(layoutInflater)
-        main1.accountNone.setOnClickListener{
-
-            Toast.makeText(applicationContext, "text Clicked", Toast.LENGTH_LONG).show()
 
 
-
+        binding.main1btn.setOnClickListener {
+            val intent = Intent(this, Mainpage1::class.java)
+            startActivity(intent)
         }
 
+        binding.client3btn.setOnClickListener {
+            val intent = Intent(this, Client3::class.java)
+            startActivity(intent)
+        }
 
-        setContentView(main1.root)
+        binding.client4btn.setOnClickListener {
+            val intent = Intent(this, Client4::class.java)
+            startActivity(intent)
+        }
+        binding.stylist4btn.setOnClickListener {
+            val intent = Intent(this, Stylist4::class.java)
+            startActivity(intent)
+        }
+
+        setContentView(binding.root)
     }
+
+
+
+
 }
