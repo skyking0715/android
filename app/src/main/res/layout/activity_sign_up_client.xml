@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpClient"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HairPick"
+        android:textSize="30dp"
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/userImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/avatar"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:id="@+id/uploadBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="프로필 사진 등록 +"
+        android:textColor="@color/black"
+        android:background="#00ff0000"/>
+
+    <EditText
+        android:id="@+id/nameEdit"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="이름"
+        android:layout_marginTop="20dp"
+        android:selectAllOnFocus="true"
+        android:maxLength="4"/>
+
+    <RadioGroup
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="남자"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여자"
+            android:layout_marginLeft="40dp"/>
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/digitEdit"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="전화번호"
+        android:layout_marginTop="10dp"
+       />
+
+    <EditText
+        android:id="@+id/adressEdit"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="주소"
+        android:layout_marginTop="10dp"
+       />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:backgroundTint="#FFFE8EB7"
+        android:text="가입하기" />
+
+
+
+
+
+
+
+</LinearLayout>

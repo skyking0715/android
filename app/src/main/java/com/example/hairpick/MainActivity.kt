@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Stylist4::class.java)
             startActivity(intent)
         }
+        binding.userSignUp.setOnClickListener{
+            val intent = Intent(this, SignUpClient::class.java)
+            startActivity(intent)
+        }
 
         setContentView(binding.root)
     }

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairPick."
         tools:targetApi="31">
+        <activity
+            android:name=".SignUpClient"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -26,31 +29,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Mainpage1"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            />
-
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Client3"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Client4"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            />
-
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Stylist4"
-            android:parentActivityName=".MainActivity"
             android:exported="false"
-            />
-
-
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
