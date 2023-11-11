@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HairPick."
         tools:targetApi="31">
         <activity
+            android:name=".MainFrame"
+            android:exported="false" />
+        <activity
             android:name=".SignUpClient"
             android:exported="false" />
 
