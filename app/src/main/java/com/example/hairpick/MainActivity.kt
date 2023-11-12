@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpClient::class.java)
             startActivity(intent)
         }
+        binding.mainFrameBtn.setOnClickListener{
+            val intent = Intent(this, MainFrame::class.java)
+            startActivity(intent)
+        }
 
         setContentView(binding.root)
     }

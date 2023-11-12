@@ -20,6 +20,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="signUp_User"/>
+        <Button
+            android:id="@+id/mainFrameBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MainFrame"/>
 
 
     </LinearLayout>

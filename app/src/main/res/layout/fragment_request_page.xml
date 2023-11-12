@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RequestPage">
+
+    <!-- TODO: Update blank fragment layout -->
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="10dp">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+          <Button
+              android:id="@+id/galleryBtn"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:drawableTop="@drawable/camera_button"
+              android:backgroundTint="@color/white"
+              android:text="0 / 10"
+              android:textColor="@color/black"/>
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/recyclerView"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"/>
+
+      </LinearLayout>
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="제목"
+          android:textSize="20dp"
+          android:textStyle="bold"
+          android:textColor="@color/black"
+          android:layout_marginTop="20dp"/>
+      <EditText
+          android:id="@+id/titleEdit"
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:hint="제목을 입력하세요"
+         />
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="상세설명"
+          android:textSize="20dp"
+          android:textStyle="bold"
+          android:textColor="@color/black"
+          android:layout_marginTop="20dp"/>
+      <EditText
+          android:id="@+id/descEdit"
+          android:layout_width="match_parent"
+          android:layout_height="48dp"
+          android:hint="원하시는 스타일을 상세히 기재해주세요"
+          />
+
+
+      <Button
+          android:id="@+id/requestBtn"
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="50dp"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          android:backgroundTint="#FFFE8EB7"
+          android:text="의뢰하기"
+          android:layout_gravity="center_horizontal"/>
+
+
+
+  </LinearLayout>
+
+</FrameLayout>

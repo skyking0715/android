@@ -14,10 +14,16 @@ class MainFrame : AppCompatActivity() {
         val binding=ActivityMainFrameBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val requestFrame=RequestPage()
+        val client4Frame=Client4()
+
+        supportFragmentManager.beginTransaction().add(binding.frameView.id, requestFrame).commit()
         /*fragment0 = Fragment0()
         fragment1 = Fragment1()
         fragment2 = Fragment2()
         fragment3 = Fragment3()
+
+
 
         supportFragmentManager.beginTransaction().add(R.id.frame, fragment0).commit()*/
 
