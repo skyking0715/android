@@ -6,7 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".MainFrame">
 
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_alignParentTop="true"
+      >
 
+       <Button
+           android:id="@+id/AppIcon"
+           android:layout_width="100dp"
+           android:layout_height="wrap_content"
+           android:drawableTop="@drawable/appicon_upperbar"
+           android:backgroundTint="@color/white"
+           android:text="HairPick"
+           android:textColor="@color/black"
+           style="?android:attr/borderlessButtonStyle"
+          />
+
+       <Button
+           android:id="@+id/bookInfoBtn"
+           android:layout_width="50dp"
+           android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+           android:drawableTop="@drawable/appicon_upperbar"
+           android:backgroundTint="@color/white"
+           style="?android:attr/borderlessButtonStyle"
+           />
+       <Button
+           android:id="@+id/profileBtn"
+           android:layout_width="50dp"
+           android:layout_height="wrap_content"
+             android:layout_toLeftOf="@id/bookInfoBtn"
+           android:drawableTop="@drawable/appicon_upperbar"
+           android:backgroundTint="@color/white"
+           style="?android:attr/borderlessButtonStyle"
+           />
+
+   </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/frameTabs"
@@ -51,7 +88,7 @@
     <FrameLayout
         android:id="@+id/frameView"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="575dp"
        android:layout_alignBottom="@id/frameTabs"
         android:layout_marginBottom="80dp"
         >
