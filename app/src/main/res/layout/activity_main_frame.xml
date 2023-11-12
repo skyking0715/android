@@ -29,7 +29,7 @@
            android:layout_width="50dp"
            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-           android:drawableTop="@drawable/appicon_upperbar"
+           android:drawableTop="@drawable/bookinfo_upperbar"
            android:backgroundTint="@color/white"
            style="?android:attr/borderlessButtonStyle"
            />
@@ -38,7 +38,7 @@
            android:layout_width="50dp"
            android:layout_height="wrap_content"
              android:layout_toLeftOf="@id/bookInfoBtn"
-           android:drawableTop="@drawable/appicon_upperbar"
+           android:drawableTop="@drawable/profile_upperbar"
            android:backgroundTint="@color/white"
            style="?android:attr/borderlessButtonStyle"
            />
@@ -57,28 +57,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="home"
-            android:icon="@drawable/locked"
+            android:icon="@drawable/housewindow"
             />
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="미용실"
-            android:icon="@drawable/locked"/>
+            android:icon="@drawable/scissors_3914127"/>
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="의뢰하기"
-            android:icon="@drawable/locked"/>
+            android:icon="@drawable/hearthalf"/>
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="bid"
-            android:icon="@drawable/locked"/>
+            android:icon="@drawable/checklist"/>
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1:1채팅"
-            android:icon="@drawable/locked"/>
+            android:icon="@drawable/messages_9821637"/>
 
 
 

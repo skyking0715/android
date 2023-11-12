@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/hairclip"
+        android:drawable="@drawable/list_8102199"
         android:width="30dp"
         android:height="30dp"/>
 </layer-list>
