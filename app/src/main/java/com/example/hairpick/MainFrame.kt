@@ -2,6 +2,7 @@ package com.example.hairpick
 
 import android.R
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hairpick.databinding.ActivityMainFrameBinding
@@ -15,7 +16,8 @@ class MainFrame : AppCompatActivity() {
         setContentView(binding.root)
 
         val requestFrame=RequestPage()
-        val client4Frame=Client4()
+        val client3Frame=Client_3()
+        val client4Frame=Client_4()
 
         supportFragmentManager.beginTransaction().add(binding.frameView.id, requestFrame).commit()
         /*fragment0 = Fragment0()
@@ -31,28 +33,26 @@ class MainFrame : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position = tab!!.position
 
-                var selected: Fragment? = null
-                if (position == 0) {
-                    //selected = fragment0
-                } else if (position == 1) {
-                    //selected = fragment1
-                } else if (position == 2) {
-                    //selected = fragment2
-                } else if (position == 3) {
-                    //selected = fragment3
-                }else if (position == 4) {
-                    //selected = fragment3
+                var selected: Fragment=requestFrame
+
+                when(tab?.text){
+                    "home"->selected=requestFrame
+                    "미용실"->selected=client3Frame
+                    "의뢰하기"->selected=requestFrame
+                    "bid"->selected=client4Frame
+                    "1:1채팅"->selected=requestFrame
+                    else ->selected=requestFrame
                 }
 
-                //getSupportFragmentManager().beginTransaction().replace(R.id.frame, selected).commit();
+                supportFragmentManager.beginTransaction().replace(binding.frameView.id, selected).commit();
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
-                TODO("Not yet implemented")
+
             }
         })
 
