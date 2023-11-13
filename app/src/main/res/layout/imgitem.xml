@@ -8,10 +8,4 @@
         android:id="@+id/imgData"
         android:layout_width="120dp"
         android:layout_height="120dp"/>
-
-    <TextView
-        android:id="@+id/itemData"
-        android:layout_width="120dp"
-        android:layout_height="120dp"/>
-
 </LinearLayout>
