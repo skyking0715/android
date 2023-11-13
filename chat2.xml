@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="채팅"
         android:textStyle="bold"
-        android:textSize="10pt"
+        android:textSize="30dp"
         android:layout_marginTop="10dp"
         />
 
@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:text="양정민"
                 android:textStyle="bold"
-                android:textSize="10pt"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대머리깎아라"
                 android:textStyle="bold"
-                android:textSize="8pt"/>
+                android:textSize="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -72,14 +72,14 @@
                 android:layout_height="wrap_content"
                 android:text="안용진"
                 android:textStyle="bold"
-                android:textSize="10pt"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대머리깎아라"
                 android:textStyle="bold"
-                android:textSize="8pt"/>
+                android:textSize="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -105,14 +105,14 @@
                 android:layout_height="wrap_content"
                 android:text="배다원"
                 android:textStyle="bold"
-                android:textSize="10pt"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대머리 깎아라"
                 android:textStyle="bold"
-                android:textSize="8pt"/>
+                android:textSize="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
