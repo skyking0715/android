@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:background="#e0e0e0"
+            android:background="#FFC0CB"
             android:layout_marginLeft="60dp"
             android:text="당신의 머리를 풍성하게" />
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:background="#e0e0e0"
+            android:background="#FFC0CB"
             android:layout_marginLeft="60dp"
             android:text="당신의 머리를 힘있게" />
 
