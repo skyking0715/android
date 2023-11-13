@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="채팅"
         android:textStyle="bold"
-        android:textSize="10pt"
+        android:textSize="30dp"
         android:layout_marginTop="10dp"
         />
 
@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:text="디자이너 전민관/모앱헤어"
                 android:textStyle="bold"
-                android:textSize="10pt"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="당신의 머리를 풍성하게"
                 android:textStyle="bold"
-                android:textSize="8pt"/>
+                android:textSize="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -72,14 +72,14 @@
                 android:layout_height="wrap_content"
                 android:text="디자이너 전민관/모앱헤어"
                 android:textStyle="bold"
-                android:textSize="10pt"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="당신의 머리를 풍성하게"
                 android:textStyle="bold"
-                android:textSize="8pt"/>
+                android:textSize="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -105,14 +105,14 @@
                 android:layout_height="wrap_content"
                 android:text="디자이너 전민관/모앱헤어"
                 android:textStyle="bold"
-                android:textSize="10pt"/>
+                android:textSize="25dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="당신의 머리를 풍성하게"
                 android:textStyle="bold"
-                android:textSize="8pt"/>
+                android:textSize="20dp"/>
 
         </LinearLayout>
     </LinearLayout>
