@@ -3,6 +3,7 @@ package com.example.hairpick
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -23,8 +24,9 @@ class SignUpClient : AppCompatActivity() {
             try{
 
                 //비트맵 이미지 크기 설정
+                val ratio=ImgSizeSet(it.data!!.data!!, resources.getDimensionPixelSize(R.dimen.imgSize), resources.getDimensionPixelSize(R.dimen.imgSize))
                 val option=BitmapFactory.Options()
-                option.inSampleSize=4
+                option.inSampleSize=ratio
 
 
                 //이미지 로딩
@@ -52,5 +54,32 @@ class SignUpClient : AppCompatActivity() {
             requestGalleryLauncher.launch(intent)
         }
 
+    }
+
+    fun ImgSizeSet(fileUri: Uri, reqWidth:Int, reqHeight:Int):Int{
+        val options=BitmapFactory.Options()
+        options.inJustDecodeBounds=true
+
+        try{
+            var inputStream=contentResolver.openInputStream(fileUri)
+            BitmapFactory.decodeStream(inputStream,null,options)
+            inputStream!!.close()
+            inputStream=null
+        }catch (e:Exception){ e.printStackTrace()}
+
+        val (height:Int, width:Int)=options.run{
+            outHeight to outWidth
+        }
+        var inSampleSize=1
+
+        if(height>reqHeight || width>reqWidth){
+            val halfHeight:Int=height/2
+            val halfWidth:Int=width/2
+
+            while(halfHeight/inSampleSize >= reqHeight && halfWidth/inSampleSize >=reqWidth){
+                inSampleSize*=2
+            }
+        }
+        return inSampleSize
     }
 }
