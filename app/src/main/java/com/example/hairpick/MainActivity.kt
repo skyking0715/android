@@ -3,9 +3,7 @@ package com.example.hairpick
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.hairpick.databinding.ActivityMainBinding
-import com.example.hairpick.databinding.MainOneBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.mainFrameBtn.setOnClickListener{
             val intent = Intent(this, MainFrame::class.java)
+            startActivity(intent)
+        }
+        binding.clientBidBtn.setOnClickListener {
+            val intent = Intent(this, ClientBid::class.java)
             startActivity(intent)
         }
 
