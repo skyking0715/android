@@ -57,6 +57,8 @@ class SignUpClient : AppCompatActivity() {
 
         }
 
+
+
     }
 
     fun ImgSizeSet(fileUri: Uri, reqWidth:Int, reqHeight:Int):Int{

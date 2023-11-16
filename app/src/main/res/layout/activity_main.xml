@@ -52,6 +52,12 @@
             android:layout_height="wrap_content"
             android:text="clientBid"
             />
+        <Button
+            android:id="@+id/clientUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update_client"
+            />
 
 
     </LinearLayout>
@@ -72,6 +78,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="s4" />
+
+        <Button
+            android:id="@+id/stylistUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update_stylist"/>
 
 
     </LinearLayout>
