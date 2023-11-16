@@ -24,7 +24,8 @@
               android:drawableTop="@drawable/camera_button"
               android:backgroundTint="@color/white"
               android:text="0 / 10"
-              android:textColor="@color/black"/>
+              android:textColor="@color/black"
+              style="?android:attr/borderlessButtonStyle"/>
 
           <androidx.recyclerview.widget.RecyclerView
               android:id="@+id/recyclerView"

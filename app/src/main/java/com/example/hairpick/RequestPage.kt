@@ -6,11 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.icu.text.ListFormatter.Width
 import android.media.Image
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.MediaStore.Audio.Media
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hairpick.databinding.FragmentRequestPageBinding
 import com.example.hairpick.databinding.FragmentStylist4Binding
 import com.example.hairpick.databinding.ImgitemBinding
+import kotlinx.coroutines.NonDisposableHandle.parent
+import java.io.IOException
 import java.lang.Exception
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,11 +41,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [RequestPage.newInstance] factory method to
  * create an instance of this fragment.
  */
-class RequestPage : Fragment(){
-    lateinit var binding:FragmentRequestPageBinding
+class RequestPage : Fragment() {
+    lateinit var binding: FragmentRequestPageBinding
     lateinit var photoAdapter: ReImgAdapter
     private lateinit var getContent: ActivityResultLauncher<Intent>
-    private val PICK_IMAGE_REQUEST = 1
+    var ImgCount:Int=0;
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -52,15 +57,15 @@ class RequestPage : Fragment(){
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                handleGalleryChoice(data)
+        getContent =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    handleGalleryChoice(data)
 
+                }
             }
-        }
     }
-
 
 
     override fun onCreateView(
@@ -68,23 +73,23 @@ class RequestPage : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        binding= FragmentRequestPageBinding.inflate(inflater,container,false)
-        binding.galleryBtn.setOnClickListener{
+        binding = FragmentRequestPageBinding.inflate(inflater, container, false)
+        binding.galleryBtn.setOnClickListener {
             openGallery()
         }
 
-        photoAdapter= ReImgAdapter(requireContext())
-        val layoutManager=LinearLayoutManager(requireContext())
-        layoutManager.orientation=LinearLayoutManager.HORIZONTAL
+        photoAdapter = ReImgAdapter(requireContext())
+        val layoutManager = LinearLayoutManager(requireContext())
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
 
 
-        binding.recyclerView.layoutManager=layoutManager
-        binding.recyclerView.adapter=photoAdapter
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = photoAdapter
 
         return binding.root
     }
 
-    private fun openGallery(){
+    private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         // 갤러리에서 선택한 이미지 처리
 
@@ -92,9 +97,13 @@ class RequestPage : Fragment(){
     }
 
     //선택된 이미지에 대한 처리
-    private fun handleGalleryChoice(data:Intent?){
-        data?.data?.let{
-            selectedImageUri->photoAdapter.addPhoto(selectedImageUri)
+    private fun handleGalleryChoice(data: Intent?) {
+        if(ImgCount==10)
+            return
+        data?.data?.let { selectedImageUri ->
+            photoAdapter.addPhoto(selectedImageUri)
+            binding.galleryBtn.text=photoAdapter.itemCount.toString() + " / 10"
+            ImgCount++
         }
     }
 
@@ -118,33 +127,52 @@ class RequestPage : Fragment(){
                 }
             }
     }
-}
-class ReImgViewHolder(val binding:ImgitemBinding):RecyclerView.ViewHolder(binding.root){
-    fun bind(photoUri:Uri){
+
+
+
+
+
+    }
+class ReImgViewHolder(val binding: ImgitemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(photoUri: Uri) {
         binding.imgData.setImageURI(photoUri)
     }
 }
 
-class ReImgAdapter(val context: Context):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ReImgAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val photoList= mutableListOf<Uri>()
-    fun addPhoto(uri: Uri){
+    private val photoList = mutableListOf<Uri>()
+    fun addPhoto(uri: Uri) {
         photoList.add(uri)
         notifyDataSetChanged()
     }
+
     //뷰 홀더
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return ReImgViewHolder(ImgitemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return ReImgViewHolder(
+            ImgitemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
+
     //각 항목 구성
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-       val binding=(holder as ReImgViewHolder).binding
-        val photoUri=photoList[position]
+        (holder as ReImgViewHolder).binding
+
+        val photoUri = photoList[position]
         holder.bind(photoUri)
+
     }
+
     //항목 개수
     override fun getItemCount(): Int {
-      return photoList.size
+        return photoList.size
     }
 }
 

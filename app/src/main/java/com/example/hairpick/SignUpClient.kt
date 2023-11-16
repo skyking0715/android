@@ -53,6 +53,9 @@ class SignUpClient : AppCompatActivity() {
             intent.type="image/*"
             requestGalleryLauncher.launch(intent)
         }
+        binding.signUpBtn.setOnClickListener{
+
+        }
 
     }
 

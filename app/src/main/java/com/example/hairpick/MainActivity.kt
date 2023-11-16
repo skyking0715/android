@@ -43,6 +43,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.stylistSignUp.setOnClickListener{
+            val intent = Intent(this, SignUpDesigner::class.java)
+            startActivity(intent)
+        }
+
         setContentView(binding.root)
     }
 

@@ -29,7 +29,7 @@
         android:id="@+id/uploadBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="프로필 사진 등록 +"
+        android:text="프로필 사진 변경"
         android:textColor="@color/black"
         android:background="#00ff0000"
         style="?android:attr/borderlessButtonStyle"/>
@@ -42,30 +42,13 @@
         android:layout_marginTop="20dp"
         android:selectAllOnFocus="true"
         android:maxLength="4"/>
-
-    <RadioGroup
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="남자"/>
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="여자"
-            android:layout_marginLeft="40dp"/>
-    </RadioGroup>
-
     <EditText
         android:id="@+id/digitEdit"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:hint="전화번호"
         android:layout_marginTop="10dp"
-       />
+        />
 
     <EditText
         android:id="@+id/adressEdit"
@@ -73,17 +56,17 @@
         android:layout_height="wrap_content"
         android:hint="주소"
         android:layout_marginTop="10dp"
-       />
+        />
 
     <Button
-        android:id="@+id/signUpBtn"
+        android:id="@+id/updateBtn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:backgroundTint="#FFFE8EB7"
-        android:text="가입하기" />
+        android:text="수정하기" />
 
 
 

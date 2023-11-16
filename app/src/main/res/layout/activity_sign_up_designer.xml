@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignUpDesigner"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="HairPick"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+            <ImageView
+                android:id="@+id/profileView"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:src="@drawable/avatar_8336287"/>
+            <Button
+                android:id="@+id/profileBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="프로필 사진 등록 +"
+                android:background="#00ff0000"
+                android:textColor="@color/black"
+                style="?android:attr/borderlessButtonStyle"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+            <EditText
+                android:id="@+id/nameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="이름"
+                android:selectAllOnFocus="true"
+                android:maxLength="4"
+                android:layout_marginLeft="10dp"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남자"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="여자"
+                    android:layout_marginLeft="40dp"/>
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/digitEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="전화번호"
+                android:layout_marginTop="10dp"
+                android:selectAllOnFocus="true"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="헤어샾 메인 이미지 등록"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+       >
+
+        <Button
+            android:id="@+id/galleryBtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/camera_button"
+            android:backgroundTint="@color/white"
+            android:text="0 / 4"
+            android:textColor="@color/black"
+            style="?android:attr/borderlessButtonStyle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/shopNameEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="업장명"
+        android:selectAllOnFocus="true"
+        android:layout_marginTop="10dp"
+        />
+    <EditText
+        android:id="@+id/descEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="업장 한줄소개"
+        android:selectAllOnFocus="true"
+        />
+    <EditText
+        android:id="@+id/shopdigitEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="업장 번호"
+        android:selectAllOnFocus="true"
+        />
+    <EditText
+        android:id="@+id/addressEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="사업자(업장) 주소"
+        android:selectAllOnFocus="true"
+        />
+    <EditText
+        android:id="@+id/infoEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="가격 정보"
+        android:selectAllOnFocus="true"
+        />
+
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:backgroundTint="#FFFE8EB7"
+        android:text="가입하기"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"/>
+
+
+
+
+
+</LinearLayout>
