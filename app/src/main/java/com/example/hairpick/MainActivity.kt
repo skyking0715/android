@@ -13,7 +13,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
+        binding.userSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpUser::class.java)
+            startActivity(intent)
+        }
         binding.main1btn.setOnClickListener {
             val intent = Intent(this, Mainpage1::class.java)
             startActivity(intent)
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Stylist4::class.java)
             startActivity(intent)
         }
-        binding.userSignUp.setOnClickListener{
+        binding.clientSignUp.setOnClickListener{
             val intent = Intent(this, SignUpClient::class.java)
             startActivity(intent)
         }

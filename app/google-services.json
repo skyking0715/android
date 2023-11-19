@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "517208723276",
+    "project_id": "hairpin-a04d9",
+    "storage_bucket": "hairpin-a04d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517208723276:android:3d918dd898fb211251c9e9",
+        "android_client_info": {
+          "package_name": "com.example.hairpick"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD17Anr_86Ci5DYr6w-_vPopqHdjm62s7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

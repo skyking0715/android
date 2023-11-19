@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="HairPick"
         android:textSize="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
@@ -33,6 +33,19 @@
         android:textColor="@color/black"
         android:background="#00ff0000"
         style="?android:attr/borderlessButtonStyle"/>
+    <EditText
+        android:id="@+id/idEdit"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="아이디(이메일)"
+       />
+    <EditText
+        android:id="@+id/pwEdit"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호"
+        android:selectAllOnFocus="true"
+        />
 
     <EditText
         android:id="@+id/nameEdit"
@@ -49,10 +62,12 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
         <RadioButton
+            android:id="@+id/radioMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="남자"/>
         <RadioButton
+            android:id="@+id/radioFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="여자"
@@ -68,7 +83,7 @@
        />
 
     <EditText
-        android:id="@+id/adressEdit"
+        android:id="@+id/addressEdit"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:hint="주소"
@@ -79,11 +94,11 @@
         android:id="@+id/signUpBtn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:backgroundTint="#FFFE8EB7"
-        android:text="가입하기" />
+        android:text="프로필 등록" />
 
 
 
