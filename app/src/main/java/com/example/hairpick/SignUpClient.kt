@@ -1,5 +1,7 @@
 package com.example.hairpick
 
+import android.app.ProgressDialog.show
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -15,6 +17,8 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.net.toUri
 import com.example.hairpick.databinding.ActivitySignUpClientBinding
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +35,9 @@ class SignUpClient : AppCompatActivity() {
     lateinit var binding:ActivitySignUpClientBinding
     lateinit var auth:FirebaseAuth
     lateinit var db:FirebaseFirestore
+    var selectedImageUri:Uri?=null
+    lateinit var imageUri:Uri
+    //val intent = Intent(this, MainFrame::class.java)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -51,9 +58,13 @@ class SignUpClient : AppCompatActivity() {
             requestGalleryLauncher.launch(intent)
         }
         binding.signUpBtn.setOnClickListener{
-            //클라이언트 객체 생성
-            val client=createClient()
-            addData(client)
+
+            if(selectedImageUri!=null){
+                //클라이언트 객체 생성
+                val client=createClient()
+                addData(client)
+            }
+
         }
 
 
@@ -61,14 +72,14 @@ class SignUpClient : AppCompatActivity() {
     }
 
     fun createClient():ClientInfo{
+        //TODO:인증했던 메일 정보 자동으로 불러와서, editText 입력 못하게 하기
         val id=binding.idEdit.getText()
-        val pw=binding.pwEdit.getText()
-        Log.d("Jeon", "$id + $pw")
-         signup(id.toString(),pw.toString())
+        //val pw=binding.pwEdit.getText()
+         //signup(id.toString(),pw.toString())
 
-        val client=ClientInfo(id.toString(),pw.toString())
+        val client=ClientInfo(id.toString())
 
-        lateinit var img:ByteArray
+
         lateinit var name:String
         lateinit var male:RadioButton
         lateinit var female:RadioButton
@@ -76,47 +87,31 @@ class SignUpClient : AppCompatActivity() {
         lateinit var num:String
         lateinit var address:String
 
-        img=imgToByte(getBitmapFromView(binding.userImageView))
+
         name=binding.nameEdit.getText().toString()
         male=binding.radioMale
         female=binding.radioFemale
         sex=if(male.isChecked)1 else 2
         num=binding.digitEdit.getText().toString()
         address=binding.addressEdit.getText().toString()
-        client.setInfo(img,name,sex,num,address)
+
+
+        client.setInfo(imageUri.toString(),name,sex,num,address)
 
         return client
     }
-
-    fun signup(email:String, password:String){
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this){task->
-            if(task.isSuccessful){
-                Log.d("Jeon", "파이어베이스 등록 성공")
-
-                auth.currentUser?.sendEmailVerification()?.addOnCompleteListener{
-                    sendTask->if(sendTask.isSuccessful){
-                    Log.d("Jeon", "인증메일 전송 성공")
-                }else{
-                    Log.d("Jeon", "인증메일 전송 실패")
-                }
-                }
-            }
-            else{
-                    Log.w("jeon", "파이어베이스 등록 실패",task.exception)
-            }
-
-        }
-    }
-
     fun addData(client:ClientInfo){
         val colRef:CollectionReference=db.collection("clients")
         val docRef: Task<DocumentReference> = colRef.add(client)
 
         docRef.addOnSuccessListener { documentReferece->
             Log.d("Jeon", "ClientDatas added with ID : ${documentReferece.id}")
+            nextPageDialog()
+
         }
         docRef.addOnFailureListener{
             e->Log.w("jeon", "Error adding datas",e)
+            failDialog()
         }
     }
 
@@ -139,6 +134,10 @@ class SignUpClient : AppCompatActivity() {
         val requestGalleryLauncher= registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             try {
 
+                selectedImageUri=it.data?.data //이미지 uri
+                if(selectedImageUri!=null){
+                    imageUri=getRealPathFromURI(selectedImageUri!!).toUri()
+                }
                 //비트맵 이미지 크기 설정
                 val ratio = ImgSizeSet(
                     it.data!!.data!!,
@@ -193,5 +192,42 @@ class SignUpClient : AppCompatActivity() {
             }
         }
         return inSampleSize
+    }
+
+    //uri->파일경로
+    fun getRealPathFromURI(uri: Uri): String {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor = contentResolver.query(uri, projection, null, null, null)
+        val columnIndex = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor?.moveToFirst()
+        val filePath = columnIndex?.let { cursor.getString(it) }
+        cursor?.close()
+        return filePath ?: ""
+    }
+
+    fun nextPageDialog(){
+        val btnHandler=object:DialogInterface.OnClickListener{
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                if(p1==DialogInterface.BUTTON_POSITIVE){
+                    //startActivity(intent)
+                }
+            }
+        }
+
+        AlertDialog.Builder(this).run{
+            setTitle("등록 성공!")
+            setMessage("프로필 등록이 완료되었습니다")
+            setPositiveButton("확인",btnHandler)
+            setCancelable(false)
+            show()
+        }.setCanceledOnTouchOutside(false)
+    }
+    fun failDialog(){
+        AlertDialog.Builder(this).run{
+            setTitle("등록 실패")
+            setMessage("다시 시도해주세요.")
+            setPositiveButton("확인",null)
+            show()
+        }
     }
 }

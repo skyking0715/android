@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HairPick."
         tools:targetApi="31">
         <activity
+            android:name=".SignInPage"
+            android:exported="false" />
+        <activity
             android:name=".SignUpUser"
             android:exported="false" />
         <activity

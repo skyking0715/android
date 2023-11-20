@@ -1,5 +1,6 @@
 package com.example.hairpick
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -16,8 +17,8 @@ class Mainpage1 : AppCompatActivity() {
         main1.accountNone.setOnClickListener{
 
             Toast.makeText(applicationContext, "text Clicked", Toast.LENGTH_LONG).show()
-
-
+            val intent = Intent(this, SignUpUser::class.java)
+            startActivity(intent)
 
         }
 

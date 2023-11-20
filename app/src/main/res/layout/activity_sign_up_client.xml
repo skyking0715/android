@@ -39,13 +39,13 @@
         android:layout_height="wrap_content"
         android:hint="아이디(이메일)"
        />
-    <EditText
+   <!-- <EditText
         android:id="@+id/pwEdit"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:hint="비밀번호"
         android:selectAllOnFocus="true"
-        />
+        />-->
 
     <EditText
         android:id="@+id/nameEdit"

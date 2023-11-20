@@ -33,7 +33,7 @@
         android:id="@+id/pwEdit"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:hint="비밀번호"
+        android:hint="비밀번호(6자 이상)"
         android:selectAllOnFocus="true"
         />
 
