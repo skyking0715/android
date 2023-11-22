@@ -22,15 +22,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.client3btn.setOnClickListener {
-            val intent = Intent(this, Client3::class.java)
-            startActivity(intent)
-        }
-
-        binding.client4btn.setOnClickListener {
-            val intent = Intent(this, Client4::class.java)
-            startActivity(intent)
-        }
         binding.stylist4btn.setOnClickListener {
             val intent = Intent(this, Stylist4::class.java)
             startActivity(intent)
