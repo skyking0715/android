@@ -14,6 +14,18 @@ class Mainpage1 : AppCompatActivity() {
 
 
         val main1 = MainOneBinding.inflate(layoutInflater)
+        setContentView(main1.root)
+
+        title = "공통 1페이지"
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) //10쪽 방법 2 (업버튼)
+
+
+        main1.startbtn.setOnClickListener {
+            val intent = Intent(this, SignInPage::class.java)
+            startActivity(intent)
+
+        }
         main1.accountNone.setOnClickListener{
 
             Toast.makeText(applicationContext, "text Clicked", Toast.LENGTH_LONG).show()
@@ -22,11 +34,6 @@ class Mainpage1 : AppCompatActivity() {
 
         }
 
-        setContentView(main1.root)
-
-        title = "공통 1페이지"
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) //10쪽 방법 2 (업버튼)
     }
 
     //10쪽 방법 2 (업버튼)

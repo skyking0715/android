@@ -9,7 +9,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/dwimg1">
+        android:src="@drawable/hairclip">
     </ImageView>
 
     <TextView
@@ -26,7 +26,7 @@
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/stratbtn"
+        android:id="@+id/startbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"

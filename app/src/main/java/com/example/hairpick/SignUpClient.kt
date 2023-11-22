@@ -10,6 +10,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.EditText
@@ -37,7 +38,7 @@ class SignUpClient : AppCompatActivity() {
     lateinit var db:FirebaseFirestore
     var selectedImageUri:Uri?=null
     lateinit var imageUri:Uri
-    //val intent = Intent(this, MainFrame::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,6 +46,10 @@ class SignUpClient : AppCompatActivity() {
         auth= Firebase.auth //파이어베이스 인증객체 얻기
         db= FirebaseFirestore.getInstance() //파이어스토어 객체얻기
         setContentView(binding.root)
+
+        //인증했던 메일 정보 자동으로 불러와서, editText 입력 못하게 하기
+        binding.idEdit.text= Editable.Factory.getInstance().newEditable(MyAccountApplication.email)
+        binding.idEdit.isEnabled=false
 
         //갤러리 요청 런처
         val requestGalleryLauncher= requestGallery()
@@ -72,7 +77,6 @@ class SignUpClient : AppCompatActivity() {
     }
 
     fun createClient():ClientInfo{
-        //TODO:인증했던 메일 정보 자동으로 불러와서, editText 입력 못하게 하기
         val id=binding.idEdit.getText()
         //val pw=binding.pwEdit.getText()
          //signup(id.toString(),pw.toString())
@@ -101,7 +105,17 @@ class SignUpClient : AppCompatActivity() {
         return client
     }
     fun addData(client:ClientInfo){
-        val colRef:CollectionReference=db.collection("clients")
+        val docRef:DocumentReference=db.collection("clients").document(binding.idEdit.text.toString())
+        docRef.set(client)
+            .addOnSuccessListener {
+                Log.d("Jeon", "ClientDatas added with ID : ${docRef.id}")
+                nextPageDialog()
+            }
+            .addOnFailureListener {
+                    e->Log.w("jeon", "Error adding datas",e)
+                failDialog()
+            }
+       /* val colRef:CollectionReference=db.collection("clients")
         val docRef: Task<DocumentReference> = colRef.add(client)
 
         docRef.addOnSuccessListener { documentReferece->
@@ -112,7 +126,7 @@ class SignUpClient : AppCompatActivity() {
         docRef.addOnFailureListener{
             e->Log.w("jeon", "Error adding datas",e)
             failDialog()
-        }
+        }*/
     }
 
     //뷰 내용 비트맵 객체로 그리기
@@ -209,7 +223,8 @@ class SignUpClient : AppCompatActivity() {
         val btnHandler=object:DialogInterface.OnClickListener{
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 if(p1==DialogInterface.BUTTON_POSITIVE){
-                    //startActivity(intent)
+                    val intent = Intent(applicationContext, MainFrame::class.java)
+                    startActivity(intent)
                 }
             }
         }

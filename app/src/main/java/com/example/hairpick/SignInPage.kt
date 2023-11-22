@@ -4,18 +4,20 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.hairpick.databinding.ActivitySignInPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class SignInPage : AppCompatActivity() {
     lateinit var auth:FirebaseAuth
     lateinit var email:String
     lateinit var password:String
-    //val intentClient = Intent(this, SignUpClient::class.java)
-    //val intentStylist = Intent(this, SignUpDesigner::class.java)
+    lateinit  var db:FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +35,7 @@ class SignInPage : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
+                    MyAccountApplication.email=email
                     //로그인 성공
                     nextPageDialog_Cli()
                 }else{
@@ -48,9 +51,13 @@ class SignInPage : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 task->
             if(task.isSuccessful){
-                //로그인 성공
-               nextPageDialog_Sty()
-
+                if(MyAccountApplication.checkAuth()){
+                    //로그인 성공
+                    MyAccountApplication.email=email
+                    nextPageDialog_Sty()
+                }else{
+                    Toast.makeText(baseContext,"전송된 메일로 이메일 인증을 진행해주세요.",Toast.LENGTH_SHORT).show()
+                }
             }else{
                 //로그인 실패
               failDialog()
@@ -64,7 +71,27 @@ class SignInPage : AppCompatActivity() {
         val btnHandler=object: DialogInterface.OnClickListener{
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 if(p1== DialogInterface.BUTTON_POSITIVE){
-                    //startActivity(intentClient)
+
+                    db= FirebaseFirestore.getInstance()
+                    val document=db.collection("clients").document(email)
+                    document.get().addOnSuccessListener {
+                        doc->
+                        if(doc.data!=null){
+                            Log.d("Jeon", "${doc.data}")
+                            //유저 정보 존재시 mainFrame 페이지로 이동
+                            val intentClient = Intent(applicationContext, MainFrame::class.java)
+                            startActivity(intentClient)
+                        }else{
+                            //유저 정보 없으면 signUpClient 페이지로 이동
+                            val intentClient = Intent(applicationContext, SignUpClient::class.java)
+                            startActivity(intentClient)
+                        }
+                    }
+                        .addOnFailureListener{
+                            exception->
+                            Log.d("Jeon", "get failed with ", exception)
+                        }
+
                 }
             }
         }
@@ -81,7 +108,28 @@ class SignInPage : AppCompatActivity() {
         val btnHandler=object: DialogInterface.OnClickListener{
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 if(p1== DialogInterface.BUTTON_POSITIVE){
-                    //startActivity(intentStylist)
+
+
+                        db= FirebaseFirestore.getInstance()
+                        val document=db.collection("stylists").document(email)
+                        document.get().addOnSuccessListener {
+                                doc->
+                            if(doc!=null){
+                                //유저 정보 존재시 mainFrame 페이지로 이동
+                                //TODO:스타일리스트용 mainFrame 만들기
+                                val intentClient = Intent(applicationContext, MainFrame::class.java)
+                                startActivity(intentClient)
+                            }else{
+                                //유저 정보 없으면 signUpClient 페이지로 이동
+                                val intentClient = Intent(applicationContext, SignUpDesigner::class.java)
+                                startActivity(intentClient)
+                            }
+                        }
+                            .addOnFailureListener{
+                                    exception->
+                                Log.d("Jeon", "get failed with ", exception)
+                            }
+
                 }
             }
         }

@@ -16,7 +16,7 @@ import com.google.firebase.storage.ktx.storage
 class SignUpUser : AppCompatActivity() {
     lateinit var binding:ActivitySignUpUserBinding
     lateinit var auth: FirebaseAuth
-    //val intent = Intent(this, Mainpage1::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivitySignUpUserBinding.inflate(layoutInflater)
@@ -45,9 +45,6 @@ class SignUpUser : AppCompatActivity() {
                         sendTask->if(sendTask.isSuccessful){
                     Log.d("Jeon", "인증메일 전송 성공")
                     nextPageDialog()
-
-                    /*val intent = Intent(this, SignUpClient::class.java)
-                    startActivity(intent)*/
                 }else{
                     Log.d("Jeon", "인증메일 전송 실패")
                     failDialog()
@@ -64,7 +61,8 @@ class SignUpUser : AppCompatActivity() {
         val btnHandler=object: DialogInterface.OnClickListener{
             override fun onClick(p0: DialogInterface?, p1: Int) {
                 if(p1== DialogInterface.BUTTON_POSITIVE){
-                    //startActivity(intent)
+                    val intent = Intent(applicationContext, Mainpage1::class.java)
+                    startActivity(intent)
                 }
             }
         }
