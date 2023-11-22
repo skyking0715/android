@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+
         >
 
         <LinearLayout
@@ -59,7 +59,8 @@
                 android:layout_height="wrap_content"
                 android:hint="이메일"
                 android:selectAllOnFocus="true"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"/>
             <EditText
                 android:id="@+id/nameEdit"
                 android:layout_width="match_parent"
@@ -74,10 +75,12 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp">
                 <RadioButton
+                    android:id="@+id/radioMale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="남자"/>
                 <RadioButton
+                    android:id="@+id/radioFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="여자"
@@ -156,7 +159,7 @@
         android:selectAllOnFocus="true"
         />
     <EditText
-        android:id="@+id/infoEdit"
+        android:id="@+id/priceinfoEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="가격 정보"

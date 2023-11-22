@@ -115,18 +115,6 @@ class SignUpClient : AppCompatActivity() {
                     e->Log.w("jeon", "Error adding datas",e)
                 failDialog()
             }
-       /* val colRef:CollectionReference=db.collection("clients")
-        val docRef: Task<DocumentReference> = colRef.add(client)
-
-        docRef.addOnSuccessListener { documentReferece->
-            Log.d("Jeon", "ClientDatas added with ID : ${documentReferece.id}")
-            nextPageDialog()
-
-        }
-        docRef.addOnFailureListener{
-            e->Log.w("jeon", "Error adding datas",e)
-            failDialog()
-        }*/
     }
 
     //뷰 내용 비트맵 객체로 그리기

@@ -114,7 +114,7 @@ class SignInPage : AppCompatActivity() {
                         val document=db.collection("stylists").document(email)
                         document.get().addOnSuccessListener {
                                 doc->
-                            if(doc!=null){
+                            if(doc.data!=null){
                                 //유저 정보 존재시 mainFrame 페이지로 이동
                                 //TODO:스타일리스트용 mainFrame 만들기
                                 val intentClient = Intent(applicationContext, MainFrame::class.java)
