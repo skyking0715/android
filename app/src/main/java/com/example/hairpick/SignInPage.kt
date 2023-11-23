@@ -35,9 +35,18 @@ class SignInPage : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener(this){
                 task->
                 if(task.isSuccessful){
-                    MyAccountApplication.email=email
-                    //로그인 성공
-                    nextPageDialog_Cli()
+                    val user = FirebaseAuth.getInstance().currentUser
+                    if (user != null && user.isEmailVerified) {
+                        // 사용자는 이메일 인증을 완료한 상태입니다.
+                        MyAccountApplication.email=email
+                        //로그인 성공
+                        nextPageDialog_Cli()
+
+                    } else {
+                        // 사용자는 이메일 인증을 완료하지 않은 상태입니다.
+                        authFail()
+                    }
+
                 }else{
                     //로그인 실패
                     failDialog()
@@ -150,4 +159,13 @@ class SignInPage : AppCompatActivity() {
             show()
         }
     }
+    fun authFail(){
+        AlertDialog.Builder(this).run{
+            setTitle("로그인 실패")
+            setMessage("이메일 인증을 진행해주세요.")
+            setPositiveButton("확인",null)
+            show()
+        }
+    }
+
 }
