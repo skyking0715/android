@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hairpick.databinding.FragmentClientMainPageBinding
+import com.example.hairpick.databinding.ImgitemBinding
+import com.example.hairpick.databinding.RecommendimgitemBinding
 import com.example.hairpick.databinding.TrendimgitemBinding
 
 
@@ -25,7 +27,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class ClientMainPage : Fragment() {
     lateinit var binding:FragmentClientMainPageBinding
-    lateinit var photoAdapter: TrendImgAdapter
+    lateinit var photoAdapter_trend: TrendImgAdapter
+    lateinit var photoAdapter_Rec:RecommendAdapter
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -53,32 +56,52 @@ class ClientMainPage : Fragment() {
 
 
 
-        photoAdapter = TrendImgAdapter(requireContext())
-        val layoutManager = LinearLayoutManager(requireContext())
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        photoAdapter_trend = TrendImgAdapter(requireContext())
+        photoAdapter_Rec= RecommendAdapter(requireContext())
+        val layoutManagerTrend = LinearLayoutManager(requireContext())
+        val layoutManagerRec=LinearLayoutManager(requireContext())
+        layoutManagerTrend.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManagerRec.orientation = LinearLayoutManager.HORIZONTAL
 
 
-        binding.recyclerView1.layoutManager = layoutManager
-        binding.recyclerView1.adapter = photoAdapter
+        binding.recyclerView1.layoutManager = layoutManagerTrend
+        binding.recyclerView1.adapter = photoAdapter_trend
+        binding.recyclerView2.layoutManager=layoutManagerRec
+        binding.recyclerView2.adapter=photoAdapter_Rec
 
-        var resId1=R.drawable.trend1
-        var imageUri1:Uri=getResourceUri(requireContext(),resId1)
-        photoAdapter.addPhoto(imageUri1)
-        var resId2=R.drawable.trend2
-        var imageUri2:Uri=getResourceUri(requireContext(),resId2)
-        photoAdapter.addPhoto(imageUri2)
-        var resId3=R.drawable.trend3
-        var imageUri3:Uri=getResourceUri(requireContext(),resId3)
-        photoAdapter.addPhoto(imageUri3)
-        var resId4=R.drawable.trend4
-        var imageUri4:Uri=getResourceUri(requireContext(),resId4)
-        photoAdapter.addPhoto(imageUri4)
-        var resId5=R.drawable.trend5
-        var imageUri5:Uri=getResourceUri(requireContext(),resId5)
-        photoAdapter.addPhoto(imageUri5)
-        var resId6=R.drawable.trend6
-        var imageUri6:Uri=getResourceUri(requireContext(),resId6)
-        photoAdapter.addPhoto(imageUri6)
+        val trendImageResources = listOf(
+            R.drawable.trend1,
+            R.drawable.trend2,
+            R.drawable.trend3,
+            R.drawable.trend4,
+            R.drawable.trend5,
+            R.drawable.trend6
+        )
+        for (resId in trendImageResources) {
+            val imageUri: Uri = getResourceUri(requireContext(), resId)
+            photoAdapter_trend.addPhoto(imageUri)
+        }
+///////////////////////////////////////////////////////////////////////////////////////
+        val recommendImageResources = mapOf(
+            "가르마펌" to R.drawable.re1,
+            "드롭컷" to R.drawable.re2,
+            "리프펌" to R.drawable.re3,
+            "쉐도우펌" to R.drawable.re4,
+            "슬릭댄디펌" to R.drawable.re5,
+            "시스루댄디펌" to R.drawable.re6,
+            "시스루애즈펌" to R.drawable.re7,
+            "시스루펌" to R.drawable.re8,
+            "애즈펌" to R.drawable.re9,
+            "히피펌" to R.drawable.re10
+        )
+
+        for (resId in recommendImageResources) {
+            val hairName:String=resId.key
+            val imageUri: Uri = getResourceUri(requireContext(), resId.value)
+            photoAdapter_Rec.addPhoto(imageUri,hairName)
+        }
+
+
 
         return binding.root
     }
@@ -96,6 +119,7 @@ class TrendImgViewHolder(val binding: TrendimgitemBinding) : RecyclerView.ViewHo
 class TrendImgAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val photoList = mutableListOf<Uri>()
+
     fun addPhoto(uri: Uri) {
         photoList.add(uri)
         notifyDataSetChanged()
@@ -121,6 +145,53 @@ class TrendImgAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.
 
         val photoUri = photoList[position]
         holder.bind(photoUri)
+
+    }
+
+    //항목 개수
+    override fun getItemCount(): Int {
+        return photoList.size
+    }
+}
+
+class RecommendViewHolder(val binding: RecommendimgitemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(photoUri: Uri,name:String) {
+        binding.recommendimgData.setImageURI(photoUri)
+        binding.hairName.text=name
+    }
+}
+
+class RecommendAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val photoList = mutableListOf<Uri>()
+    private val hairList= mutableListOf<String>()
+    fun addPhoto(uri: Uri,name:String) {
+        photoList.add(uri)
+        hairList.add(name)
+        notifyDataSetChanged()
+    }
+
+    //뷰 홀더
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return RecommendViewHolder(
+            RecommendimgitemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    //각 항목 구성
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as RecommendViewHolder).binding
+
+        val photoUri = photoList[position]
+        val hairName=hairList[position]
+        holder.bind(photoUri,hairName)
 
     }
 

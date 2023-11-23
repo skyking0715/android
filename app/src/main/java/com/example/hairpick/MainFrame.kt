@@ -20,7 +20,7 @@ class MainFrame : AppCompatActivity() {
         val client3Frame=Client_3()
         val client4Frame=Client_4()
 
-        supportFragmentManager.beginTransaction().add(binding.frameView.id, requestFrame).commit()
+        supportFragmentManager.beginTransaction().add(binding.frameView.id, clientMainFrame).commit()
         /*fragment0 = Fragment0()
         fragment1 = Fragment1()
         fragment2 = Fragment2()
@@ -34,7 +34,7 @@ class MainFrame : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position = tab!!.position
 
-                var selected: Fragment=requestFrame
+                var selected: Fragment=clientMainFrame
 
                 when(tab?.text){
                     "home"->selected=clientMainFrame
