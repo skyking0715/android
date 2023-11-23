@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/recommendimgData"
-        android:layout_width="110dp"
-        android:layout_height="100dp"
+        android:layout_width="120dp"
+        android:layout_height="110dp"
         android:scaleType="centerInside"/>
 
 </LinearLayout>

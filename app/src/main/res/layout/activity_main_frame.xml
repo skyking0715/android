@@ -16,11 +16,12 @@
 
        <Button
            android:id="@+id/AppIcon"
-           android:layout_width="100dp"
-           android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+           android:layout_height="70dp"
            android:drawableTop="@drawable/appicon_upperbar"
            android:backgroundTint="@color/white"
            android:text="HairPick"
+           android:textSize="10sp"
            android:textColor="@color/black"
            style="?android:attr/borderlessButtonStyle"
           />
@@ -89,7 +90,7 @@
     <FrameLayout
         android:id="@+id/frameView"
         android:layout_width="match_parent"
-        android:layout_height="575dp"
+        android:layout_height="590dp"
        android:layout_alignBottom="@id/frameTabs"
         android:layout_marginBottom="80dp"
         >
