@@ -38,10 +38,12 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/profile_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_upperbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_frame.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_frame.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_user.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chat1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chat2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_bid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_bid.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_main_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_main_page.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_client_bid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_client_bid.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" afterDir="false" />

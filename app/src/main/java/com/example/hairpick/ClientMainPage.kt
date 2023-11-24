@@ -89,6 +89,8 @@ class ClientMainPage : Fragment() {
             if(clientInfo!=null){
                 Log.d("jeon", clientInfo.sex.toString())
                 MyAccountApplication.sex=clientInfo.sex
+                MyAccountApplication.name=clientInfo.name
+                setUserName()
 
                 if(MyAccountApplication.sex==1){
                     storageReference=storage.reference.child("manTrend")
@@ -99,24 +101,15 @@ class ClientMainPage : Fragment() {
                 }
             }else{
                 Log.d("jeon", "데이터 로드 실패")
+
+
             }
         }
 
 
 
 
-       /* val trendImageResources = listOf(
-            R.drawable.trend1,
-            R.drawable.trend2,
-            R.drawable.trend3,
-            R.drawable.trend4,
-            R.drawable.trend5,
-            R.drawable.trend6
-        )
-        for (resId in trendImageResources) {
-            val imageUri: Uri = getResourceUri(requireContext(), resId)
-            photoAdapter_trend.addPhoto(imageUri)
-        }*/
+
 ///////////////////////////////////////////////////////////////////////////////////////
         val recommendImageResources = mapOf(
             "가르마펌" to R.drawable.re1,
@@ -177,6 +170,11 @@ class ClientMainPage : Fragment() {
             .addOnFailureListener {
                 Log.d("jeon", "이미지 불러오기 실패")
             }
+    }
+
+    fun setUserName(){
+        if(MyAccountApplication.name!=null)
+            binding.recommendText.text=MyAccountApplication.name+" 님을 위한 추천 스타일"
     }
 
 
