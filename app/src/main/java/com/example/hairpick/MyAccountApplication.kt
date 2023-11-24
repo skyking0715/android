@@ -8,7 +8,9 @@ import com.google.firebase.ktx.Firebase
 class MyAccountApplication:MultiDexApplication() {
     companion object{
         lateinit var auth:FirebaseAuth
-        var email:String?=null
+        var email:String?="mingwan51910@gmail.com" //에러 방지용 default email
+        var address:String?=null
+        var sex:Int=1
 
         fun checkAuth():Boolean{
             val currentUser=auth.currentUser

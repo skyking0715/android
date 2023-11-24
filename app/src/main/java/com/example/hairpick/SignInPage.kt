@@ -36,7 +36,7 @@ class SignInPage : AppCompatActivity() {
                 task->
                 if(task.isSuccessful){
                     val user = FirebaseAuth.getInstance().currentUser
-                    if (user != null && user.isEmailVerified) {
+                    if (user != null && MyAccountApplication.checkAuth()) {
                         // 사용자는 이메일 인증을 완료한 상태입니다.
                         MyAccountApplication.email=email
                         //로그인 성공

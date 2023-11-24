@@ -3,16 +3,25 @@ package com.example.hairpick
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.hairpick.databinding.FragmentClientMainPageBinding
 import com.example.hairpick.databinding.ImgitemBinding
 import com.example.hairpick.databinding.RecommendimgitemBinding
 import com.example.hairpick.databinding.TrendimgitemBinding
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.storage
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,6 +38,9 @@ class ClientMainPage : Fragment() {
     lateinit var binding:FragmentClientMainPageBinding
     lateinit var photoAdapter_trend: TrendImgAdapter
     lateinit var photoAdapter_Rec:RecommendAdapter
+    lateinit var db:FirebaseFirestore
+    lateinit var storage:FirebaseStorage
+    lateinit var storageReference:StorageReference
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -40,6 +52,9 @@ class ClientMainPage : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        db= FirebaseFirestore.getInstance()
+        storage= Firebase.storage
+
 
 
     }
@@ -69,7 +84,18 @@ class ClientMainPage : Fragment() {
         binding.recyclerView2.layoutManager=layoutManagerRec
         binding.recyclerView2.adapter=photoAdapter_Rec
 
-        val trendImageResources = listOf(
+        val myInfo=getUserObject()
+        if(myInfo!=null)
+            MyAccountApplication.sex=myInfo.sex
+
+        if(MyAccountApplication.sex==1){
+            storageReference=storage.reference.child("manTrend")
+            getTrendImg()
+        }else{
+
+        }
+
+       /* val trendImageResources = listOf(
             R.drawable.trend1,
             R.drawable.trend2,
             R.drawable.trend3,
@@ -80,7 +106,7 @@ class ClientMainPage : Fragment() {
         for (resId in trendImageResources) {
             val imageUri: Uri = getResourceUri(requireContext(), resId)
             photoAdapter_trend.addPhoto(imageUri)
-        }
+        }*/
 ///////////////////////////////////////////////////////////////////////////////////////
         val recommendImageResources = mapOf(
             "가르마펌" to R.drawable.re1,
@@ -106,13 +132,48 @@ class ClientMainPage : Fragment() {
         return binding.root
     }
 
+    fun getUserObject():ClientInfo?{
+        val clientInfo:ClientInfo?=null
+        val docRef=db.collection("clients").document(MyAccountApplication.email.toString())
+        docRef.get().addOnSuccessListener { document->
+            val clientInfo=document.toObject(ClientInfo::class.java)
+            //Log.d("Jeon", "name:${clientInfo?.name}")
+
+        }
+        return clientInfo
+    }
+
+    fun getTrendImg(){
+        storageReference.listAll()
+            .addOnSuccessListener { result->
+                for(item in result.items){
+                    item.downloadUrl.addOnSuccessListener {imageUri->
+                        Log.d("jeon","성공성공")
+                        photoAdapter_trend.addPhoto(imageUri)
+                    }
+                        .addOnFailureListener {
+                            Log.d("jeon","이미지 다운로드 url 가져오기 실패")
+                        }
+
+                }
+            }
+            .addOnFailureListener {
+                Log.d("jeon", "이미지 불러오기 실패")
+            }
+    }
+
 
 
 }
 
 class TrendImgViewHolder(val binding: TrendimgitemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(photoUri: Uri) {
-        binding.trendimgData.setImageURI(photoUri)
+
+    fun bind(photoUri: Uri){
+        //Glide - 구글에서 만든 이미지 로더 라이브러리
+        //기술문서 작성 시 추가할 것
+        Glide.with(binding.trendimgData.context)
+            .load(photoUri)
+            .into(binding.trendimgData)
     }
 }
 
@@ -145,6 +206,7 @@ class TrendImgAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.
 
         val photoUri = photoList[position]
         holder.bind(photoUri)
+
 
     }
 
