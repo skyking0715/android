@@ -84,16 +84,26 @@ class ClientMainPage : Fragment() {
         binding.recyclerView2.layoutManager=layoutManagerRec
         binding.recyclerView2.adapter=photoAdapter_Rec
 
-        val myInfo=getUserObject()
-        if(myInfo!=null)
-            MyAccountApplication.sex=myInfo.sex
+        val myInfo=getUserObject{ //유저정보 객체
+            clientInfo ->
+            if(clientInfo!=null){
+                Log.d("jeon", clientInfo.sex.toString())
+                MyAccountApplication.sex=clientInfo.sex
 
-        if(MyAccountApplication.sex==1){
-            storageReference=storage.reference.child("manTrend")
-            getTrendImg()
-        }else{
-
+                if(MyAccountApplication.sex==1){
+                    storageReference=storage.reference.child("manTrend")
+                    getTrendImg()
+                }else{
+                    storageReference=storage.reference.child("womanTrend")
+                    getTrendImg()
+                }
+            }else{
+                Log.d("jeon", "데이터 로드 실패")
+            }
         }
+
+
+
 
        /* val trendImageResources = listOf(
             R.drawable.trend1,
@@ -132,15 +142,22 @@ class ClientMainPage : Fragment() {
         return binding.root
     }
 
-    fun getUserObject():ClientInfo?{
-        val clientInfo:ClientInfo?=null
+    /*Firestore 쿼리의 비동기적인 특성을 처리하는 콜백
+    * 데이터를 성공적으로 가져온 후에도, 비동기적 특성으로 인해 clientInfo가 초기화되지 않는 경우 방지
+    * */
+
+    fun getUserObject(callback: (ClientInfo?)->Unit){
+        var clientInfo:ClientInfo?=null
         val docRef=db.collection("clients").document(MyAccountApplication.email.toString())
         docRef.get().addOnSuccessListener { document->
-            val clientInfo=document.toObject(ClientInfo::class.java)
-            //Log.d("Jeon", "name:${clientInfo?.name}")
+            clientInfo=document.toObject(ClientInfo::class.java)
+            callback(clientInfo)
 
+        }.addOnFailureListener {
+            Log.d("jeon","사용자 데이터 가져오기 실패")
+            callback(null)
         }
-        return clientInfo
+
     }
 
     fun getTrendImg(){
