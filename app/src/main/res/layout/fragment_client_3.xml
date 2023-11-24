@@ -20,26 +20,30 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/dwimg1" />
+                android:src="@drawable/avatar"
+                android:paddingLeft="10dp"/>
 
             <TextView
+                android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="현재위치 : None Data"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:paddingLeft="10dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ListView
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nearShop"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-
-
-            </ListView>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"/>
 
         </LinearLayout>
 

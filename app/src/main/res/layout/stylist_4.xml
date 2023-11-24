@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="100dp"
-            android:src="@drawable/dwimg1"
+            android:src="@drawable/re7"
 
             />
         <TextView
@@ -51,28 +51,13 @@
         android:layout_gravity="center_horizontal">
 
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/dwimg1"
-
-            />
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/dwimg1"
-
-            />
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/dwimg1"
-            />
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/dwimg1"
-            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/extraPic22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 
