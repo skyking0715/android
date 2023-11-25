@@ -40,7 +40,8 @@ class ClientMainPage : Fragment() {
     lateinit var photoAdapter_Rec:RecommendAdapter
     lateinit var db:FirebaseFirestore
     lateinit var storage:FirebaseStorage
-    lateinit var storageReference:StorageReference
+    lateinit var storageReference_trend:StorageReference
+    lateinit var storageReference_Rec:StorageReference
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -93,11 +94,15 @@ class ClientMainPage : Fragment() {
                 setUserName()
 
                 if(MyAccountApplication.sex==1){
-                    storageReference=storage.reference.child("manTrend")
+                    storageReference_trend=storage.reference.child("manTrend")
+                    storageReference_Rec=storage.reference.child("manRecommend")
                     getTrendImg()
+                    getRecImg()
                 }else{
-                    storageReference=storage.reference.child("womanTrend")
+                    storageReference_trend=storage.reference.child("womanTrend")
+                    storageReference_Rec=storage.reference.child("womanRecommend")
                     getTrendImg()
+                    getRecImg()
                 }
             }else{
                 Log.d("jeon", "데이터 로드 실패")
@@ -111,7 +116,7 @@ class ClientMainPage : Fragment() {
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-        val recommendImageResources = mapOf(
+       /* val recommendImageResources = mapOf(
             "가르마펌" to R.drawable.re1,
             "드롭컷" to R.drawable.re2,
             "리프펌" to R.drawable.re3,
@@ -128,7 +133,7 @@ class ClientMainPage : Fragment() {
             val hairName:String=resId.key
             val imageUri: Uri = getResourceUri(requireContext(), resId.value)
             photoAdapter_Rec.addPhoto(imageUri,hairName)
-        }
+        }*/
 
 
 
@@ -154,12 +159,34 @@ class ClientMainPage : Fragment() {
     }
 
     fun getTrendImg(){
-        storageReference.listAll()
+        storageReference_trend.listAll()
             .addOnSuccessListener { result->
                 for(item in result.items){
+                    /*val fileName=item.name
+                    Log.d("jeon", "$fileName")*/
                     item.downloadUrl.addOnSuccessListener {imageUri->
                         Log.d("jeon","성공성공")
                         photoAdapter_trend.addPhoto(imageUri)
+                    }
+                        .addOnFailureListener {
+                            Log.d("jeon","이미지 다운로드 url 가져오기 실패")
+                        }
+
+                }
+            }
+            .addOnFailureListener {
+                Log.d("jeon", "이미지 불러오기 실패")
+            }
+    }
+
+    fun getRecImg(){
+        storageReference_Rec.listAll()
+            .addOnSuccessListener { result->
+                for(item in result.items){
+                    val fileName=removeExtension(item.name)
+                    item.downloadUrl.addOnSuccessListener {imageUri->
+                        Log.d("jeon","성공성공")
+                        photoAdapter_Rec.addPhoto(imageUri,fileName)
                     }
                         .addOnFailureListener {
                             Log.d("jeon","이미지 다운로드 url 가져오기 실패")
@@ -176,6 +203,20 @@ class ClientMainPage : Fragment() {
         if(MyAccountApplication.name!=null)
             binding.recommendText.text=MyAccountApplication.name+" 님을 위한 추천 스타일"
     }
+
+    fun removeExtension(input: String): String {
+        // Find the last occurrence of "." in the string
+        val lastDotIndex = input.lastIndexOf('.')
+
+        // If "." is found and it is before the last character, remove the extension
+        return if (lastDotIndex != -1 && lastDotIndex < input.length - 1) {
+            input.substring(0, lastDotIndex)
+        } else {
+            // If "." is not found or it is the last character, return the original string
+            input
+        }
+    }
+
 
 
 
@@ -233,7 +274,9 @@ class TrendImgAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.
 
 class RecommendViewHolder(val binding: RecommendimgitemBinding) : RecyclerView.ViewHolder(binding.root) {
     fun bind(photoUri: Uri,name:String) {
-        binding.recommendimgData.setImageURI(photoUri)
+        Glide.with(binding.recommendimgData.context)
+            .load(photoUri)
+            .into(binding.recommendimgData)
         binding.hairName.text=name
     }
 }

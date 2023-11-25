@@ -38,12 +38,10 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/profile_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_upperbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_frame.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_frame.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sign_up_user.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chat1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chat2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_bid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_bid.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_main_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_main_page.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_client_bid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_client_bid.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" afterDir="false" />
@@ -151,20 +149,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "cidr.known.project.marker": "true",
-    "last_directory_selection": "D:/hairpick/android/app/src/main/res/values-night",
-    "last_opened_file_path": "D:/Android/AndroidStudioProject/Test1111",
-    "project.structure.last.edited": "SDK Location",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/hairpick/android/app/src/main/res/values-night&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Android/AndroidStudioProject/Test1111&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK Location&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.-711314667">
       <recent name="com.example.hairpick" />
