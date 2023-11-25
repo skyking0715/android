@@ -3,14 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Client_4">
+    tools:context=".Client_4"
+    android:padding="5dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+       >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,34 +26,84 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/dwimg1">
+                android:id="@+id/img0"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@drawable/dwimg1"
+                android:scaleType="centerCrop"
+                >
 
             </ImageView>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/dwimg1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="vertical">
 
-            </ImageView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/dwimg1"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/dwimg1"
+                        android:scaleType="centerCrop"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/dwimg1"
+                        android:scaleType="centerCrop"/>
+
+                    <ImageView
+                        android:id="@+id/img4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/dwimg1"
+                        android:scaleType="centerCrop"/>
+
+                </LinearLayout>
 
 
 
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
+            android:id="@+id/shopName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:textStyle="bold"
             android:text="아너디 헤어"
+            android:textColor="@color/black"
             android:layout_gravity="center_horizontal">
 
         </TextView>
         <TextView
+            android:id="@+id/shopAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -66,26 +124,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:text="가격표)"
-            android:layout_marginLeft="20dp"
+            android:text="가격표"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_gravity="left"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/priceText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="남성커트 : 100000원"
-            android:layout_marginLeft="20dp"
             android:layout_gravity="left"/>
 
 
+
+
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/signUpBtn"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="예약하기"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            />
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="#FFFE8EB7"
+            android:text="예약하기" />
 
 
 
@@ -96,5 +159,7 @@
 
 
     </LinearLayout>
+
+    </ScrollView>
 
 </FrameLayout>
