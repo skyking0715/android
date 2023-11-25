@@ -29,6 +29,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.lang.Exception
 
@@ -100,21 +101,38 @@ class SignUpClient : AppCompatActivity() {
         address=binding.addressEdit.getText().toString()
 
 
-        client.setInfo(imageUri.toString(),name,sex,num,address)
+        client.setInfo(name,sex,num,address)
 
         return client
     }
     fun addData(client:ClientInfo){
-        val docRef:DocumentReference=db.collection("clients").document(binding.idEdit.text.toString())
-        docRef.set(client)
-            .addOnSuccessListener {
-                Log.d("Jeon", "ClientDatas added with ID : ${docRef.id}")
-                nextPageDialog()
+        val storageRef=FirebaseStorage.getInstance().reference
+        val imageRef=storageRef.child("clientImages/${client.id}.jpg")
+
+        val uploadTask=imageRef.putBytes(imgToByte(getBitmapFromView(binding.userImageView)))
+        uploadTask.addOnCompleteListener{
+            task->
+            if(task.isSuccessful) {
+                Log.d("jeon", "이미지 스토리지에 업로드 성공")
+                // 이미지가 성공적으로 업로드되면 다운로드 URL을 가져옵니다.
+                imageRef.downloadUrl.addOnSuccessListener { uri ->
+                    client.imgUrl = uri.toString()
+
+                    val docRef:DocumentReference=db.collection("clients").document(binding.idEdit.text.toString())
+                    docRef.set(client)
+                        .addOnSuccessListener {
+                            Log.d("Jeon", "ClientDatas added with ID : ${docRef.id}")
+                            nextPageDialog()
+                        }
+                        .addOnFailureListener {
+                                e->Log.w("jeon", "Error adding datas",e)
+                            failDialog()
+                        }
+
+                }
             }
-            .addOnFailureListener {
-                    e->Log.w("jeon", "Error adding datas",e)
-                failDialog()
-            }
+        }
+
     }
 
     //뷰 내용 비트맵 객체로 그리기

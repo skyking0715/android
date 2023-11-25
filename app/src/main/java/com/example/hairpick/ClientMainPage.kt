@@ -60,10 +60,6 @@ class ClientMainPage : Fragment() {
 
     }
 
-    fun getResourceUri(context: Context,resId:Int):Uri{
-       return Uri.parse("android.resource://"+context.packageName+"/"+resId)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -111,32 +107,6 @@ class ClientMainPage : Fragment() {
             }
         }
 
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////////
-       /* val recommendImageResources = mapOf(
-            "가르마펌" to R.drawable.re1,
-            "드롭컷" to R.drawable.re2,
-            "리프펌" to R.drawable.re3,
-            "쉐도우펌" to R.drawable.re4,
-            "슬릭댄디펌" to R.drawable.re5,
-            "시스루댄디펌" to R.drawable.re6,
-            "시스루애즈펌" to R.drawable.re7,
-            "시스루펌" to R.drawable.re8,
-            "애즈펌" to R.drawable.re9,
-            "히피펌" to R.drawable.re10
-        )
-
-        for (resId in recommendImageResources) {
-            val hairName:String=resId.key
-            val imageUri: Uri = getResourceUri(requireContext(), resId.value)
-            photoAdapter_Rec.addPhoto(imageUri,hairName)
-        }*/
-
-
-
         return binding.root
     }
 
@@ -162,10 +132,7 @@ class ClientMainPage : Fragment() {
         storageReference_trend.listAll()
             .addOnSuccessListener { result->
                 for(item in result.items){
-                    /*val fileName=item.name
-                    Log.d("jeon", "$fileName")*/
                     item.downloadUrl.addOnSuccessListener {imageUri->
-                        Log.d("jeon","성공성공")
                         photoAdapter_trend.addPhoto(imageUri)
                     }
                         .addOnFailureListener {
@@ -185,7 +152,6 @@ class ClientMainPage : Fragment() {
                 for(item in result.items){
                     val fileName=removeExtension(item.name)
                     item.downloadUrl.addOnSuccessListener {imageUri->
-                        Log.d("jeon","성공성공")
                         photoAdapter_Rec.addPhoto(imageUri,fileName)
                     }
                         .addOnFailureListener {
