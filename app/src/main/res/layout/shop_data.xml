@@ -2,28 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="100dp"
     android:orientation="horizontal"
-    android:padding="16dp"
     android:layout_margin="8dp">
+
 
 
     <!--Client3(미용실 탭) - recycleView에 사용되는 폼 // 주변 미용실-->
     <ImageView
         android:id="@+id/image_data"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
 
         />
-    <TextView
-        android:id="@+id/item_data"
-        android:layout_width="0dp"
-        android:layout_weight="6"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:paddingLeft="10dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:id="@+id/shopNameText"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/shopAddressText"
+            android:layout_width="match_parent"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            />
+
+    </LinearLayout>
+
 
 </LinearLayout>

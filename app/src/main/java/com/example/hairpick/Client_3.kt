@@ -6,18 +6,30 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.hairpick.databinding.FragmentClient3Binding
 import com.example.hairpick.databinding.ShopDataBinding
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import java.net.URL
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,29 +37,55 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 
-class Shop(val imageId: Int, val name: String){
+class Shop(){
+    lateinit var imageUrl: String
+    lateinit var name:String
+    lateinit var address:String
     //Shop 클래스는 대표 이미지와 가게이름
+    constructor(imageUrl: String, name: String, address:String):this(){
+        this.imageUrl=imageUrl
+        this.name=name
+        this.address=address
+    }
 }
 class ShopViewHolder(val binding: ShopDataBinding):
-    RecyclerView.ViewHolder(binding.root)
+    RecyclerView.ViewHolder(binding.root){
+    fun bind(photoUrl: String){
+        //Glide - 구글에서 만든 이미지 로더 라이브러리
+        //기술문서 작성 시 추가할 것
+        Glide.with(binding.imageData.context)
+            .load(photoUrl)
+            .into(binding.imageData)
+    }
+    }
 
 class ShopAdapter(val datas: MutableList<Shop>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    fun addShop(shop: Shop) {
+        datas.add(shop)
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             RecyclerView.ViewHolder = ShopViewHolder(ShopDataBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val binding = (holder as ShopViewHolder).binding
 
-        binding.itemData.text = datas[position].name
-        val drawable = ContextCompat.getDrawable(binding.root.context, datas[position].imageId)
-        binding.imageData.setImageDrawable(drawable)
+
+        val binding = (holder as ShopViewHolder).binding
+        holder.bind(datas[position].imageUrl)
+        binding.shopNameText.text = datas[position].name
+        binding.shopAddressText.text=datas[position].address
+
+        //al drawable = ContextCompat.getDrawable(binding.root.context, datas[position].imageId)
+        //binding.imageData.setImageDrawable(drawable)
         // ---------------------------------------------------recycleview에서 이미지 삽입
 
     }
     override fun getItemCount(): Int {
         return datas.size
     }
+
 }
 
 
@@ -57,7 +95,13 @@ class ShopAdapter(val datas: MutableList<Shop>): RecyclerView.Adapter<RecyclerVi
  * create an instance of this fragment.
  */
 class Client_3 : Fragment() {
-   /* // TODO: Rename and change types of parameters
+    lateinit var db: FirebaseFirestore
+    lateinit var storage: FirebaseStorage
+    lateinit var firestore:FirebaseFirestore
+    lateinit var collectionRef:CollectionReference
+    lateinit var datas:MutableList<Shop>
+    lateinit var adapter:ShopAdapter
+    // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
@@ -67,7 +111,13 @@ class Client_3 : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-    }*/
+
+        db= FirebaseFirestore.getInstance()
+        storage= Firebase.storage
+        firestore=FirebaseFirestore.getInstance()
+        collectionRef=firestore.collection("stylists")
+        datas = mutableListOf<Shop>()
+    }
    lateinit var binding:FragmentClient3Binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,13 +125,17 @@ class Client_3 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=FragmentClient3Binding.inflate(inflater,container,false)
+        val layoutManager = LinearLayoutManager(activity)
+        //xml파일에 recyclerView가 있어야함
+        binding.nearShop.layoutManager=layoutManager
 
-        //binding.location.text = "현재위치 가져오기.."
+        adapter = ShopAdapter(datas)
+        binding.nearShop.adapter = adapter
 
-        val datas = mutableListOf<Shop>()
+        binding.location.text =MyAccountApplication.address
+        getShopDatas()
 
-
-        datas.add(Shop(R.drawable.re1, "가가미용실"))
+       /* datas.add(Shop(R.drawable.re1, "가가미용실"))
         datas.add(Shop(R.drawable.re2, "나나미용실"))
         datas.add(Shop(R.drawable.re3, "다다미용실"))
         datas.add(Shop(R.drawable.re4, "라라미용실"))
@@ -90,15 +144,10 @@ class Client_3 : Fragment() {
         datas.add(Shop(R.drawable.re7, "사사미용실"))
         datas.add(Shop(R.drawable.re8, "아아미용실"))
         datas.add(Shop(R.drawable.re9, "자자미용실"))
-        datas.add(Shop(R.drawable.re10, "차차미용실"))
+        datas.add(Shop(R.drawable.re10, "차차미용실"))*/
 
 
-        val layoutManager = LinearLayoutManager(activity)
-        //xml파일에 recyclerView가 있어야함
-        binding.nearShop.layoutManager=layoutManager
 
-        val adapter = ShopAdapter(datas)
-        binding.nearShop.adapter = adapter
 
         //binding.nearShop.addItemDecoration(MyDecoration(activity as Context)) //데코없음
 
@@ -107,24 +156,23 @@ class Client_3 : Fragment() {
 
         return binding.root
     }
+    fun getShopDatas(){
 
- /*   companion object {
-        *//**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Client_3.
-         *//*
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Client_3().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        val searchAddress:String=MyAccountApplication.address.toString()
+        Log.d("Jeon", searchAddress)
+        collectionRef.whereEqualTo("shopAddress",searchAddress)
+            .get()
+            .addOnSuccessListener {
+                for(document in it){
+                    val shopDoc=document.toObject(ShopInfo::class.java)
+                    val shop=Shop(shopDoc.img,shopDoc.shopName,shopDoc.shopAddress)
+                    adapter.addShop(shop)
                 }
             }
-    }*/
+            .addOnFailureListener {
+                Log.w("Jeon", "Error getting documents")
+            }
+
+    }
+
 }

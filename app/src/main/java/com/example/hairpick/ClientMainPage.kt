@@ -87,6 +87,7 @@ class ClientMainPage : Fragment() {
                 Log.d("jeon", clientInfo.sex.toString())
                 MyAccountApplication.sex=clientInfo.sex
                 MyAccountApplication.name=clientInfo.name
+                MyAccountApplication.address=clientInfo.adress
                 setUserName()
 
                 if(MyAccountApplication.sex==1){

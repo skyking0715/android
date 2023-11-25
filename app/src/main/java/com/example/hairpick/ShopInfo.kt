@@ -3,7 +3,8 @@ package com.example.hairpick
 import android.net.Uri
 import android.util.Log
 
-class ShopInfo(val id:String) {
+class ShopInfo() {
+    lateinit var id:String
     lateinit var img:String
     lateinit var name:String
     var sex:Int=0
@@ -16,6 +17,9 @@ class ShopInfo(val id:String) {
     lateinit var shopNum:String
     lateinit var shopAddress:String
     lateinit var priceList:String
+    constructor(id:String):this(){
+        this.id=id
+    }
 
     public fun stylistInfoset(name:String,sex:Int, num:String){
         this.name=name

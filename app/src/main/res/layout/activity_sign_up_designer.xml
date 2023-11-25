@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="프로필 사진 등록 +"
+                android:text="헤어샵 메인 등록 +"
                 android:background="#00ff0000"
                 android:textColor="@color/black"
                 style="?android:attr/borderlessButtonStyle"/>
@@ -104,7 +104,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="헤어샾 메인 이미지 등록"
+        android:text="헤어샾 소개 이미지 등록"
         android:textColor="@color/black"
         android:textStyle="bold"/>
 

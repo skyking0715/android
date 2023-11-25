@@ -9,7 +9,7 @@ class MyAccountApplication:MultiDexApplication() {
     companion object{
         lateinit var auth:FirebaseAuth
         var email:String?="mingwan51910@gmail.com" //에러 방지용 default email
-        var address:String?=null
+        var address:String?="주소 없음"
         var sex:Int=1
         var name:String?=null
 
