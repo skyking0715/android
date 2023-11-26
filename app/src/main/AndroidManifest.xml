@@ -63,7 +63,7 @@
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Stylist4"
+            android:name=".Chatting"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
     </application>

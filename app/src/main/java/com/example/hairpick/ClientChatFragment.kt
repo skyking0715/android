@@ -1,12 +1,14 @@
 package com.example.hairpick
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ClientChatFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ClientChatFragment : Fragment() {
+class ClientChatFragment : Fragment() , ItemClickListener {
 
     lateinit var binding: FragmentClientChatBinding
 
@@ -34,6 +36,12 @@ class ClientChatFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    override fun onItemClick(position: Int) {
+        // 채팅유저 클릭 후 이벤트
+        // Chatting만 나옴
+        val intent = Intent(activity, Chatting::class.java)
+        startActivity(intent)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,7 +49,9 @@ class ClientChatFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +74,7 @@ class ClientChatFragment : Fragment() {
 
         binding.chatRecyclerView.layoutManager=layoutManager
 
-        val adapter = ChatAdapter(datas)
+        val adapter = ChatAdapter(datas, this) //생성자 clickListener 추가
         binding.chatRecyclerView.adapter = adapter
 
 
@@ -93,12 +103,29 @@ class ClientChatFragment : Fragment() {
     }
 }
 
-class ChatViewHolder(val binding:ChatUserDataBinding): RecyclerView.ViewHolder(binding.root)
 
-class ChatAdapter(val datas: MutableList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+interface ItemClickListener {
+    fun onItemClick(position: Int)
+}// click listener인터페이스 추가
+class ChatViewHolder(val binding:ChatUserDataBinding, val clickListener: ItemClickListener): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
+
+    init {
+        // ViewHolder의 생성자에서 클릭 리스너 등록
+        binding.chatUser.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View) {
+        // 클릭 -> ItemClickListener를 통해 처리
+        clickListener.onItemClick(adapterPosition)
+    }
+
+}
+
+class ChatAdapter(val datas: MutableList<String>, val itemClickListener: ItemClickListener): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            RecyclerView.ViewHolder = ChatViewHolder(ChatUserDataBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+            RecyclerView.ViewHolder
+                = ChatViewHolder(ChatUserDataBinding.inflate(LayoutInflater.from(parent.context),parent,false), itemClickListener)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as ChatViewHolder).binding
@@ -108,4 +135,6 @@ class ChatAdapter(val datas: MutableList<String>): RecyclerView.Adapter<Recycler
     override fun getItemCount(): Int {
         return datas.size
     }
+
+
 }

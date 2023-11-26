@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.stylist4btn.setOnClickListener {
-            val intent = Intent(this, Stylist4::class.java)
+            val intent = Intent(this, Chatting::class.java)
             startActivity(intent)
         }
         binding.clientSignUp.setOnClickListener{
