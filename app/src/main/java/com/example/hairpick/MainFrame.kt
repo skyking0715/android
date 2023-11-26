@@ -10,45 +10,35 @@ import com.google.android.material.tabs.TabLayout
 
 
 class MainFrame : AppCompatActivity() {
+    private lateinit var binding: ActivityMainFrameBinding
+    private val requestFrame: RequestPage by lazy { RequestPage() }
+    private val clientMainFrame: ClientMainPage by lazy { ClientMainPage() }
+    private val client3Frame: Client_3 by lazy { Client_3() }
+    private val client4Frame: Client_4 by lazy { Client_4() }
+    private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding=ActivityMainFrameBinding.inflate(layoutInflater)
+        binding=ActivityMainFrameBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val requestFrame=RequestPage()
-        val clientMainFrame=ClientMainPage()
-        val client3Frame=Client_3()
-        val client4Frame=Client_4()
 
         val clientChatFrame = ClientChatFragment() //채팅프레그먼트
 
         supportFragmentManager.beginTransaction().add(binding.frameView.id, clientMainFrame).commit()
-        /*fragment0 = Fragment0()
-        fragment1 = Fragment1()
-        fragment2 = Fragment2()
-        fragment3 = Fragment3()
 
-
-
-        supportFragmentManager.beginTransaction().add(R.id.frame, fragment0).commit()*/
 
         binding.frameTabs.addOnTabSelectedListener(object:TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                val position = tab!!.position
 
-                var selected: Fragment=clientMainFrame
-
-                when(tab?.text){
-                    "home"->selected=clientMainFrame
-                    "미용실"->selected=client3Frame
-                    "의뢰하기"->selected=requestFrame
-                    "bid"->selected=client4Frame
-                    //"1:1채팅"->selected=requestFrame
-                    "1:1채팅"->selected=clientChatFrame
-                    else ->selected=requestFrame
+                var selected: Fragment= when(tab?.text){
+                    "home"->clientMainFrame
+                    "미용실"->client3Frame
+                    "의뢰하기"->requestFrame
+                    "bid"->client4Frame
+                    "1:1채팅"->clientChatFrame
+                    else ->requestFrame
                 }
+                showHideFragment(selected)
 
-                supportFragmentManager.beginTransaction().replace(binding.frameView.id, selected).commit();
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -59,5 +49,26 @@ class MainFrame : AppCompatActivity() {
 
             }
         })
+    }
+
+    //프래그먼트 한번 생성하면, 계속 재사용
+    private fun showHideFragment(selectedFragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+
+        val fragments = listOf(clientMainFrame, client3Frame, requestFrame, client4Frame, clientChatFrame)
+
+        for (fragment in fragments) {
+            if (fragment != selectedFragment && fragment.isAdded) {
+                transaction.hide(fragment) //이미 생성되어있다면, 숨김
+            }
+        }
+
+        if (selectedFragment.isAdded) {
+            transaction.show(selectedFragment)
+        } else {
+            transaction.add(binding.frameView.id, selectedFragment, selectedFragment.javaClass.simpleName)
+        }
+
+        transaction.commit()
     }
 }
