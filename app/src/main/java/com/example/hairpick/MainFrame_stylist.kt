@@ -15,11 +15,11 @@ class MainFrame_stylist : AppCompatActivity() {
         setContentView(binding.root)
 
         val requestFrame=RequestPage()
-        val clientMainFrame=ClientMainPage()
+        val stylistMainFrame=StylistMainPage()
         val client3Frame=Client_3()
         val client4Frame=Client_4()
 
-        supportFragmentManager.beginTransaction().add(binding.frameView.id, clientMainFrame).commit()
+        supportFragmentManager.beginTransaction().add(binding.frameView.id, stylistMainFrame).commit()
         /*fragment0 = Fragment0()
         fragment1 = Fragment1()
         fragment2 = Fragment2()
@@ -32,14 +32,14 @@ class MainFrame_stylist : AppCompatActivity() {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position = tab!!.position
 
-                var selected: Fragment =clientMainFrame
+                var selected: Fragment =stylistMainFrame
 
                 when(tab?.text){
-                    "home"->selected=clientMainFrame
-                    "미용실"->selected=client3Frame
-                    "의뢰하기"->selected=requestFrame
-                    "bid"->selected=client4Frame
-                    "1:1채팅"->selected=requestFrame
+                    "home"->selected=stylistMainFrame
+                    //"미용실"->selected=client3Frame
+                    //"의뢰하기"->selected=requestFrame
+                    //"bid"->selected=client4Frame
+                    //"1:1채팅"->selected=requestFrame
                     else ->selected=requestFrame
                 }
 
