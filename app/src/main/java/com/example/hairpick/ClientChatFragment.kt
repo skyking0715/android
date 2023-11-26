@@ -1,12 +1,20 @@
 package com.example.hairpick
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.hairpick.databinding.ChatUserDataBinding
 import com.example.hairpick.databinding.FragmentClient4Binding
 import com.example.hairpick.databinding.FragmentClientChatBinding
+import com.example.hairpick.databinding.ShopDataBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +40,7 @@ class ClientChatFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -40,6 +49,26 @@ class ClientChatFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentClientChatBinding.inflate(inflater,container,false)
+
+
+        val datas = mutableListOf<String>()
+
+
+        datas.add("ㄱㄱㄱ")
+        datas.add("ㄴㄴㄴ")
+        datas.add("ㄷㄷㄷ")
+        datas.add("ㄹㄹㄹ")
+        datas.add("ㅁㅁㅁ")
+
+        val layoutManager = LinearLayoutManager(activity)
+
+        binding.chatRecyclerView.layoutManager=layoutManager
+
+        val adapter = ChatAdapter(datas)
+        binding.chatRecyclerView.adapter = adapter
+
+
+
         return binding.root
     }
 
@@ -61,5 +90,22 @@ class ClientChatFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+}
+
+class ChatViewHolder(val binding:ChatUserDataBinding): RecyclerView.ViewHolder(binding.root)
+
+class ChatAdapter(val datas: MutableList<String>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
+            RecyclerView.ViewHolder = ChatViewHolder(ChatUserDataBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val binding = (holder as ChatViewHolder).binding
+        binding.userName.text = datas[position]
+
+    }
+    override fun getItemCount(): Int {
+        return datas.size
     }
 }

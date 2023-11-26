@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!-- 받은 메시지 레이아웃 -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="8dp">
+        <ImageView
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="44dp"
+            android:layout_height="44dp"/>
+        <!-- 받은 메시지를 표시하는 TextView -->
+        <TextView
+            android:id="@+id/textViewReceivedMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#FFC0CB"
+            android:layout_marginLeft="60dp"
+            android:text="당신의 머리를 풍성하게" />
+
+    </FrameLayout>
+
+    <!-- 보낸 메시지 레이아웃 -->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="8dp">
+
+        <!-- 보낸 메시지를 표시하는 TextView -->
+        <TextView
+            android:id="@+id/textViewSentMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#3498db"
+            android:textColor="#ffffff"
+            android:text="안녕하세요, 반갑습니다." />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="8dp">
+        <ImageView
+            android:src="@drawable/ic_launcher_background"
+            android:layout_width="44dp"
+            android:layout_height="44dp"/>
+        <!-- 받은 메시지를 표시하는 TextView -->
+        <TextView
+            android:id="@+id/textViewReceivedMessage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#FFC0CB"
+            android:layout_marginLeft="60dp"
+            android:text="당신의 머리를 힘있게" />
+
+    </FrameLayout>
+
+
+    <!-- 메시지를 입력하는 EditText -->
+
+    <!-- 메시지 전송 버튼 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="450dp">
+        <EditText
+            android:id="@+id/editTextMessage"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_margin="8dp"
+            android:background="#ffffff"
+            android:hint="메시지를 입력하세요..."
+            android:inputType="textMultiLine|textCapSentences"
+            android:padding="16dp" />
+
+        <Button
+            android:id="@+id/buttonSend"
+            android:layout_marginTop="10dp"
+            android:layout_width="85dp"
+            android:layout_height="60dp"
+
+            android:layout_margin="8dp"
+            android:text="전송" />
+
+    </LinearLayout>
+</LinearLayout>
