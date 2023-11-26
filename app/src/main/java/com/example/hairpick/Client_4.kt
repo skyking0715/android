@@ -97,6 +97,8 @@ class Client_4 : Fragment(),OnMapReadyCallback{
         binding.shopName.text=shopData.shopName
         binding.shopAddress.text=shopData.shopAddress
         binding.priceText.text=shopData.priceList
+        binding.shopNum.text=shopData.shopNum
+        binding.shopDesc.text=shopData.shopDesc
 
         storageRef.listAll()
             .addOnSuccessListener { result->
@@ -155,6 +157,7 @@ class Client_4 : Fragment(),OnMapReadyCallback{
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
             markerOptions.position(latLng)
             markerOptions.title(binding.shopName.getText().toString())
+            markerOptions.snippet("Tel)"+binding.shopNum.getText().toString())
 
             googleMap?.addMarker(markerOptions)
         }

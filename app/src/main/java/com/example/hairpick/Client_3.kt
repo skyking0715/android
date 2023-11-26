@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.hairpick.MyAccountApplication.Companion.address
 import com.example.hairpick.databinding.FragmentClient3Binding
 import com.example.hairpick.databinding.ShopDataBinding
 import com.google.firebase.firestore.CollectionReference
@@ -41,12 +42,12 @@ private const val ARG_PARAM2 = "param2"
 class Shop(){
     lateinit var imageUrl: String
     lateinit var name:String
-    lateinit var address:String
+    lateinit var desc:String
     //Shop 클래스는 대표 이미지와 가게이름
-    constructor(imageUrl: String, name: String, address:String):this(){
+    constructor(imageUrl: String, name: String, desc:String):this(){
         this.imageUrl=imageUrl
         this.name=name
-        this.address=address
+        this.desc=desc
     }
 }
 class ShopViewHolder(val binding: ShopDataBinding):
@@ -82,7 +83,7 @@ class ShopAdapter(val datas: MutableList<Shop>): RecyclerView.Adapter<RecyclerVi
         val binding = (holder as ShopViewHolder).binding
         holder.bind(datas[position].imageUrl)
         binding.shopNameText.text = datas[position].name
-        binding.shopAddressText.text=datas[position].address
+        binding.shopDescText.text=datas[position].desc
         binding.root.setOnClickListener{
             Log.d("Jeon", shopInfo.get(position).name)
             onItemClickCallback?.invoke(shopInfo[position])
@@ -176,7 +177,7 @@ class Client_3 : Fragment() {
             .addOnSuccessListener {
                 for(document in it){
                     val shopDoc=document.toObject(ShopInfo::class.java)
-                    val shop=Shop(shopDoc.img,shopDoc.shopName,shopDoc.shopAddress)
+                    val shop=Shop(shopDoc.img,shopDoc.shopName,shopDoc.shopDesc)
                     adapter.addShop(shop)
                     adapter.saveShopInfo(shopDoc)
                 }

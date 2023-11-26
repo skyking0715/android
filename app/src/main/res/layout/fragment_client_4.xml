@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:src="@drawable/dwimg1"
+                android:src="@drawable/hairbasic"
                 android:scaleType="centerCrop"
                 >
 
@@ -51,7 +51,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:src="@drawable/dwimg1"
+                        android:src="@drawable/hairbasic"
                         android:scaleType="centerCrop"/>
 
                     <ImageView
@@ -59,7 +59,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:src="@drawable/dwimg1"
+                        android:src="@drawable/hairbasic"
                         android:scaleType="centerCrop"/>
 
                 </LinearLayout>
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:src="@drawable/dwimg1"
+                        android:src="@drawable/hairbasic"
                         android:scaleType="centerCrop"/>
 
                     <ImageView
@@ -81,7 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:src="@drawable/dwimg1"
+                        android:src="@drawable/hairbasic"
                         android:scaleType="centerCrop"/>
 
                 </LinearLayout>
@@ -99,7 +99,8 @@
             android:textStyle="bold"
             android:text="아너디 헤어"
             android:textColor="@color/black"
-            android:layout_gravity="center_horizontal">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp">
 
         </TextView>
         <TextView
@@ -108,6 +109,20 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="대구 북구 침산로 93 이마트 칠성점 2F"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/shopNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="010-000-0000"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/shopDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="고객 한분한분께 최선을 다하겠습니다."
             android:layout_gravity="center_horizontal"/>
 
 
@@ -127,7 +142,8 @@
             android:text="가격표"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:layout_gravity="left"/>
+            android:layout_gravity="left"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/priceText"
