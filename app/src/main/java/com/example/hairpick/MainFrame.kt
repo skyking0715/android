@@ -20,6 +20,8 @@ class MainFrame : AppCompatActivity() {
         val client3Frame=Client_3()
         val client4Frame=Client_4()
 
+        val clientChatFrame = ClientChatFragment() //채팅프레그먼트
+
         supportFragmentManager.beginTransaction().add(binding.frameView.id, clientMainFrame).commit()
         /*fragment0 = Fragment0()
         fragment1 = Fragment1()
@@ -41,7 +43,8 @@ class MainFrame : AppCompatActivity() {
                     "미용실"->selected=client3Frame
                     "의뢰하기"->selected=requestFrame
                     "bid"->selected=client4Frame
-                    "1:1채팅"->selected=requestFrame
+                    //"1:1채팅"->selected=requestFrame
+                    "1:1채팅"->selected=clientChatFrame
                     else ->selected=requestFrame
                 }
 
