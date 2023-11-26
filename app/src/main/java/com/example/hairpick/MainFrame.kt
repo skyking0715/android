@@ -56,13 +56,5 @@ class MainFrame : AppCompatActivity() {
 
             }
         })
-
-
-
-
-
-
-
-
     }
 }
