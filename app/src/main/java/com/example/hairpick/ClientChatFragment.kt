@@ -107,6 +107,7 @@ class ClientChatFragment : Fragment() , ItemClickListener {
 interface ItemClickListener {
     fun onItemClick(position: Int)
 }// click listener인터페이스 추가
+
 class ChatViewHolder(val binding:ChatUserDataBinding, val clickListener: ItemClickListener): RecyclerView.ViewHolder(binding.root), View.OnClickListener{
 
     init {
