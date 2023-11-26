@@ -1,5 +1,7 @@
 package com.example.hairpick
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +12,15 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.hairpick.databinding.FragmentClient3Binding
 import com.example.hairpick.databinding.FragmentClient4Binding
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.MapFragment
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -27,11 +38,15 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Client_4.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Client_4 : Fragment() {
+class Client_4 : Fragment(),OnMapReadyCallback{
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage
     lateinit var firestore: FirebaseFirestore
     lateinit var storageRef: StorageReference
+
+    lateinit var binding:FragmentClient4Binding
+    var googleMap:GoogleMap?=null
+    private var mapReady=false
     var shopData:ShopInfo?=null
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -47,6 +62,8 @@ class Client_4 : Fragment() {
         db= FirebaseFirestore.getInstance()
         storage= Firebase.storage
         firestore=FirebaseFirestore.getInstance()
+
+
     }
 
     override fun onCreateView(
@@ -54,9 +71,10 @@ class Client_4 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding= FragmentClient4Binding.inflate(inflater,container,false)
+        binding= FragmentClient4Binding.inflate(inflater,container,false)
 
-
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapfragment) as SupportMapFragment
+      mapFragment.getMapAsync(this)
 
         val shopId=arguments?.getString("shopId")
         if(shopId!=null){
@@ -67,6 +85,11 @@ class Client_4 : Fragment() {
                 dataBinding(binding,shopData!!)
             }
         }
+
+
+
+
+
         return binding.root
     }
 
@@ -108,5 +131,32 @@ class Client_4 : Fragment() {
 
     }
 
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map  // Assign the received GoogleMap object to your variable
+        mapReady=true
+        updateMapIfNeeded()
+    }
+    private fun updateMapIfNeeded() {
+        if (mapReady) {
+            // 위치 설정
+            val latLng = LatLng(35.8928, 128.6076)
+            val position = CameraPosition.Builder()
+                .target(latLng)
+                .zoom(18f)
+                .build()
+            googleMap?.moveCamera(CameraUpdateFactory.newCameraPosition(position))
 
+            //맵 마커
+
+            val originalBitmap = BitmapFactory.decodeResource(resources, R.drawable.mapmarker)
+            val scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, 80, 100, false)
+
+            val markerOptions=MarkerOptions()
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(scaledBitmap))
+            markerOptions.position(latLng)
+            markerOptions.title(binding.shopName.getText().toString())
+
+            googleMap?.addMarker(markerOptions)
+        }
+    }
 }

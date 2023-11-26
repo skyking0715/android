@@ -194,7 +194,7 @@ class Client_3 : Fragment() {
 
         // 프래그먼트 트랜잭션 시작
         val transaction = activity?.supportFragmentManager?.beginTransaction()
-
+        transaction?.addToBackStack(null) //백 스택 사용
         if (transaction != null) {
             // R.id.frameView는 ClientMainFrame의 프래임 레이아웃입니다.
             transaction.replace(R.id.frameView, fragment)
