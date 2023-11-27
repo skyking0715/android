@@ -43,7 +43,6 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:background="#22000000"
-        app:tabSelectedTextColor="#FE8EB7"
         >
 
         <com.google.android.material.tabs.TabItem

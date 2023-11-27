@@ -165,20 +165,6 @@ class StylistMainPage : Fragment() {
         }
             photoAdapter_trend.setPhotoList(selectedPhotoList)
     }
-
-    fun getShopObject(callback: (ShopInfo?)->Unit){
-        var stylistInfo:ShopInfo?=null
-        val docRef=db.collection("stylists").document(MyAccountApplication.email.toString())
-        docRef.get().addOnSuccessListener { document->
-            stylistInfo=document.toObject(ShopInfo::class.java)
-            callback(stylistInfo)
-
-        }.addOnFailureListener {
-            Log.d("jeon","사용자 데이터 가져오기 실패")
-            callback(null)
-        }
-
-    }
     fun sampleSchedule(){
         scheduleAdapter.addDataList("오전","10:00","이민아")
         scheduleAdapter.addDataList("오전","10:30","하은빈")
