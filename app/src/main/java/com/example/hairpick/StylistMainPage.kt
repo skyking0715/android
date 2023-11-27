@@ -14,12 +14,20 @@ import com.bumptech.glide.Glide
 import com.example.hairpick.databinding.FragmentClientMainPageBinding
 import com.example.hairpick.databinding.FragmentStylistMainPageBinding
 import com.example.hairpick.databinding.TrendimgitemBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.resumeWithException
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,9 +45,11 @@ class StylistMainPage : Fragment() {
     lateinit var storage: FirebaseStorage
     lateinit var storageReference_trendMen: StorageReference
     lateinit var storageReference_trendWomen: StorageReference
+    private val menFrame: TrendMenFragment by lazy { TrendMenFragment() }
+    private val womenFrame: TrendWomenFragment by lazy { TrendWomenFragment() }
 
-    val photoList_men = mutableListOf<Uri>()
-    val photoList_women = mutableListOf<Uri>()
+    var photoList_men = arrayListOf<Uri>()
+    var photoList_women = arrayListOf<Uri>()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -53,6 +63,9 @@ class StylistMainPage : Fragment() {
         }
         db= FirebaseFirestore.getInstance()
         storage= Firebase.storage
+        storageReference_trendMen=storage.reference.child("manTrend")
+        storageReference_trendWomen=storage.reference.child("womanTrend")
+
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,71 +73,61 @@ class StylistMainPage : Fragment() {
     ): View? {
         binding= FragmentStylistMainPageBinding.inflate(inflater, container, false)
 
+        createFragments()
+        return binding.root
+    }
+    private fun createFragments() {
+        try{
+            val menFrame = TrendMenFragment.newInstance(photoList_men)
+            val womenFrame = TrendWomenFragment.newInstance(photoList_women)
 
+            val fragmentTransaction = childFragmentManager.beginTransaction()
 
-       /* val myInfo=getShopObject{ //유저정보 객체
-                clientInfo ->
-            if(clientInfo!=null){
-                MyAccountApplication.name=clientInfo.name
-                MyAccountApplication.address=clientInfo.shopAddress
-
-                storageReference_trendMen=storage.reference.child("manTrend")
-                storageReference_trendWomen=storage.reference.child("womanTrend")
-                //getTrendImg()
-
-            }else{
-                Log.d("jeon", "데이터 로드 실패")
+            // 프래그먼트 재사용하기
+            if (menFrame.isAdded) {
+                fragmentTransaction.show(menFrame)
+            } else {
+                fragmentTransaction.add(binding.frameView.id, menFrame, "menFrame")
             }
-        }*/
+            if (womenFrame.isAdded) {
+                fragmentTransaction.hide(womenFrame)
+            } else {
+                fragmentTransaction.add(binding.frameView.id, womenFrame, "womenFrame")
+            }
+            fragmentTransaction.commit()
 
-
-
-
-
-
-
-        val menFrame=TrendMenFragment()
-        val womenFrame=TrendWomenFragment()
-
-        val fragmentTransaction=childFragmentManager.beginTransaction()
-
-        fragmentTransaction.add(binding.frameView.id, menFrame)
-        fragmentTransaction.commit()
-
-       binding.trendTabs.addOnTabSelectedListener(object:TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.let {
-                    when (it.position) {
-                        0 -> replaceFragment(menFrame)
-                        1 -> replaceFragment(womenFrame)
-                        // 다른 탭에 대한 처리 추가 가능
+            binding.trendTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    tab?.let {
+                        when (it.position) {
+                            0 -> showFragment(menFrame)
+                            1 -> showFragment(womenFrame)
+                        }
                     }
                 }
 
-            }
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
 
-            }
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-        })
-
-        return binding.root
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        try{
-            // 프래그먼트 트랜잭션을 시작하고 프래그먼트를 교체합니다.
-            val fragmentTransaction = childFragmentManager.beginTransaction()
-            fragmentTransaction.replace(binding.frameView.id, fragment)
-            fragmentTransaction.commit()
-
-            Log.d("jeon", "Fragment replaced successfully") // 로그 추가
-        }catch (e: Exception) {
-            Log.e("jeon", "Error replacing fragment: ${e.message}")
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+            })
+        }catch (e:Exception){
+            Log.e("jeon", "Error in createFragments: ${e.message}")
+            e.printStackTrace()
         }
 
+    }
+
+    private fun showFragment(fragment: Fragment) {
+        val fragmentTransaction = childFragmentManager.beginTransaction()
+
+        if (fragment.isAdded) {
+            fragmentTransaction.show(fragment)
+        } else {
+            fragmentTransaction.hide(if (fragment == menFrame) womenFrame else menFrame)
+            fragmentTransaction.add(binding.frameView.id, fragment, fragment.javaClass.simpleName)
+        }
+
+        fragmentTransaction.commit()
     }
     fun getShopObject(callback: (ShopInfo?)->Unit){
         var stylistInfo:ShopInfo?=null
@@ -139,38 +142,6 @@ class StylistMainPage : Fragment() {
         }
 
     }
-    fun getTrendImg(){
-        storageReference_trendMen.listAll()
-            .addOnSuccessListener { result->
-                for(item in result.items){
-                    item.downloadUrl.addOnSuccessListener {imageUri->
-                        //photoAdapter_trend.addPhoto(imageUri)
-                        photoList_men.add(imageUri)
-                    }
-                        .addOnFailureListener {
-                            Log.d("jeon","이미지 다운로드 url 가져오기 실패")
-                        }
 
-                }
-            }
-            .addOnFailureListener {
-                Log.d("jeon", "이미지 불러오기 실패")
-            }
 
-        storageReference_trendWomen.listAll()
-            .addOnSuccessListener { result->
-                for(item in result.items){
-                    item.downloadUrl.addOnSuccessListener {imageUri->
-                        //photoAdapter_trend.addPhoto(imageUri)
-                        photoList_women.add(imageUri)
-                    }
-                        .addOnFailureListener {
-                            Log.d("jeon","이미지 다운로드 url 가져오기 실패")
-                        }
-                }
-            }
-            .addOnFailureListener {
-                Log.d("jeon", "이미지 불러오기 실패")
-            }
-    }
 }

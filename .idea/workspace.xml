@@ -41,6 +41,8 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ShopInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ShopInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist4.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistMainPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistMainPage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/TrendMenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/TrendMenFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/TrendWomenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/TrendWomenFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/appicon_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/appicon_upperbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bookinfo_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bookinfo_upperbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/camera_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/camera_button.xml" afterDir="false" />
@@ -59,6 +61,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_chat.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_main_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_main_page.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_trend_men.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_trend_men.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_client_bid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_client_bid.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_one.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_one.xml" afterDir="false" />
@@ -172,7 +175,7 @@
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;D:/hairpick/android/app/src/main/res/values-night&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/harbor/android/app/src/main/res/drawable&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/harbor/android/app/src/main/res/layout&quot;,
     &quot;project.structure.last.edited&quot;: &quot;SDK Location&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -184,11 +187,11 @@
       <recent name="com.example.hairpick" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\harbor\android\app\src\main\res\layout" />
       <recent name="C:\harbor\android\app\src\main\res\drawable" />
       <recent name="C:\harbor\android\app\src\main\res\drawable\Trend_sample" />
       <recent name="C:\harbor\android\app" />
       <recent name="C:\Users\sea51\Documents\GitHub\android\app\src\main\res\drawable" />
-      <recent name="C:\Users\sea51\Documents\GitHub\android\app\src\main\res\layout" />
     </key>
     <key name="android.template.-1237039293">
       <recent name="com.example.hairpick" />

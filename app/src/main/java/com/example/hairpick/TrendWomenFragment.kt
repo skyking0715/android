@@ -28,6 +28,7 @@ private const val ARG_PARAM2 = "param2"
 class TrendWomenFragment : Fragment() {
     lateinit var binding:FragmentTrendWomenBinding
     lateinit var photoAdapter_trend: Women_TrendImgAdapter
+    private var uriList: ArrayList<Uri>? = null
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -38,7 +39,7 @@ class TrendWomenFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        Log.d("jeon","trendWomen")
+
     }
 
     override fun onCreateView(
@@ -55,7 +56,27 @@ class TrendWomenFragment : Fragment() {
         binding.recyclerView1.layoutManager = layoutManagerTrend
         binding.recyclerView1.adapter = photoAdapter_trend
 
+        arguments?.let {
+            uriList = it.getParcelableArrayList("uriList")
+            uriList?.let {
+                for(uri in it){
+                    Log.d("Jeon","$uri")
+                    photoAdapter_trend.addPhoto(uri)
+                }
+            }
+        }
+
         return binding.root
+    }
+
+    companion object {
+        fun newInstance(uriList: ArrayList<Uri>): TrendWomenFragment {
+            val fragment = TrendWomenFragment()
+            val args = Bundle()
+            args.putParcelableArrayList("uriList", uriList)
+            fragment.arguments = args
+            return fragment
+        }
     }
 }
 

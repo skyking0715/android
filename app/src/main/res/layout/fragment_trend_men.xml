@@ -5,10 +5,13 @@
     android:layout_height="wrap_content"
     tools:context=".TrendMenFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView1"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:orientation="horizontal"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView1"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="horizontal"/>
+
 
 </FrameLayout>
