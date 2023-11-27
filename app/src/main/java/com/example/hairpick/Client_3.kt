@@ -115,12 +115,13 @@ class ShopAdapter(val datas: MutableList<Shop>): RecyclerView.Adapter<RecyclerVi
 }
 
 
+
 /**
  * A simple [Fragment] subclass.
  * Use the [Client_3.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Client_3 : Fragment() {
+class Client_3 : Fragment(){
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage
     lateinit var firestore:FirebaseFirestore
@@ -198,13 +199,15 @@ class Client_3 : Fragment() {
         transaction?.addToBackStack(null) //백 스택 사용
         if (transaction != null) {
             // R.id.frameView는 ClientMainFrame의 프래임 레이아웃입니다.
-            transaction.replace(R.id.frameView, fragment)
+           transaction.replace(R.id.frameView, fragment)
             transaction.addToBackStack(null)
             transaction.commit()
 
         } else {
             Log.e("Jeon", "Activity is null.")
         }
+
     }
+
 
 }

@@ -38,6 +38,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Client_4.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 class Client_4 : Fragment(),OnMapReadyCallback{
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage

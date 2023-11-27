@@ -125,11 +125,10 @@ class SignInPage : AppCompatActivity() {
                                 doc->
                             if(doc.data!=null){
                                 //유저 정보 존재시 mainFrame 페이지로 이동
-                                //TODO:스타일리스트용 mainFrame 만들기
-                                val intentClient = Intent(applicationContext, MainFrame::class.java)
+                                val intentClient = Intent(applicationContext, MainFrame_stylist::class.java)
                                 startActivity(intentClient)
                             }else{
-                                //유저 정보 없으면 signUpClient 페이지로 이동
+                                //유저 정보 없으면 signUpDesigner 페이지로 이동
                                 val intentClient = Intent(applicationContext, SignUpDesigner::class.java)
                                 startActivity(intentClient)
                             }
