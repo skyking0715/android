@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hairpick.databinding.FragmentClientMainPageBinding
 import com.example.hairpick.databinding.FragmentStylistMainPageBinding
+import com.example.hairpick.databinding.ScheduleitemBinding
 import com.example.hairpick.databinding.TrendimgitemBinding
 import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayout
@@ -45,6 +46,7 @@ private const val ARG_PARAM2 = "param2"
 class StylistMainPage : Fragment() {
     lateinit var binding: FragmentStylistMainPageBinding
     lateinit var photoAdapter_trend: Stylist_TrendImgAdapter
+    lateinit var scheduleAdapter: ScheduleAdapter
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage
     lateinit var storageReference_trendMen: StorageReference
@@ -101,12 +103,19 @@ class StylistMainPage : Fragment() {
     ): View? {
         binding= FragmentStylistMainPageBinding.inflate(inflater, container, false)
         photoAdapter_trend = Stylist_TrendImgAdapter(requireContext())
-        val layoutManagerTrend = LinearLayoutManager(requireContext())
-        layoutManagerTrend.orientation = LinearLayoutManager.HORIZONTAL
+        scheduleAdapter=ScheduleAdapter(requireContext())
 
+        val layoutManagerTrend = LinearLayoutManager(requireContext())
+        val layoutManagerSchedule = LinearLayoutManager(requireContext())
+        layoutManagerTrend.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManagerSchedule.orientation=LinearLayoutManager.VERTICAL
 
         binding.recyclerView1.layoutManager = layoutManagerTrend
         binding.recyclerView1.adapter = photoAdapter_trend
+        binding.recyclerView2.layoutManager=layoutManagerSchedule
+        binding.recyclerView2.adapter=scheduleAdapter
+
+        sampleSchedule()
 
         return binding.root
     }
@@ -170,6 +179,15 @@ class StylistMainPage : Fragment() {
         }
 
     }
+    fun sampleSchedule(){
+        scheduleAdapter.addDataList("오전","10:00","이민아")
+        scheduleAdapter.addDataList("오전","10:30","하은빈")
+        scheduleAdapter.addDataList("오전","11:20","김혁진")
+        scheduleAdapter.addDataList("오후","02:30","오하림")
+        scheduleAdapter.addDataList("오후","04:00","김동훈")
+        scheduleAdapter.addDataList("오후","06:30","박동균")
+    }
+
 
 }
 
@@ -220,5 +238,55 @@ class Stylist_TrendImgAdapter(val context: Context) : RecyclerView.Adapter<Recyc
     //항목 개수
     override fun getItemCount(): Int {
         return photoList.size
+    }
+}
+
+class ScheduleViewHolder(val binding: ScheduleitemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
+    fun bind(data:String){
+        val separatedStrings = data.split(" ")
+        binding.ampm.text=separatedStrings.get(0)
+        binding.time.text=separatedStrings.get(1)
+        binding.clinetName.text=separatedStrings.get(2)
+    }
+}
+
+class ScheduleAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val dataList:ArrayList<String> = arrayListOf()
+    fun addDataList(ampm:String, time:String, name:String){
+        val string=ampm +" "+time +" "+name
+        this.dataList.add(string)
+        notifyDataSetChanged()
+    }
+
+    //뷰 홀더
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return ScheduleViewHolder(
+            ScheduleitemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    //각 항목 구성
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as ScheduleViewHolder).binding
+
+        val photoUri = dataList[position]
+        holder.bind(photoUri)
+
+
+    }
+
+    //항목 개수
+    override fun getItemCount(): Int {
+        return dataList.size
     }
 }
