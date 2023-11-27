@@ -1,7 +1,9 @@
 package com.example.hairpick
 
+import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.hairpick.databinding.ActivityMainFrameBinding
 import com.example.hairpick.databinding.ActivityMainFrameStylistBinding
@@ -33,10 +35,15 @@ class MainFrame_stylist : AppCompatActivity() {
                     //"1:1채팅"->
                     else ->stylistMainFrame
                 }
+                //탭 색깔 설정 - 테스트
+               val iconColor = ContextCompat.getColor(applicationContext, R.color.tabselected)
+                tab?.icon?.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
-
+                //탭 색깔 설정 - 테스트
+               val iconColor = ContextCompat.getColor(applicationContext, R.color.tabunselected)
+                tab?.icon?.setColorFilter(iconColor, PorterDuff.Mode.SRC_IN)
             }
 
             override fun onTabReselected(tab: TabLayout.Tab?) {
