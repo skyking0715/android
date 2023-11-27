@@ -1,13 +1,16 @@
 package com.example.hairpick
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -41,15 +44,15 @@ private const val ARG_PARAM2 = "param2"
  */
 class StylistMainPage : Fragment() {
     lateinit var binding: FragmentStylistMainPageBinding
+    lateinit var photoAdapter_trend: Stylist_TrendImgAdapter
     lateinit var db: FirebaseFirestore
     lateinit var storage: FirebaseStorage
     lateinit var storageReference_trendMen: StorageReference
     lateinit var storageReference_trendWomen: StorageReference
-    private val menFrame: TrendMenFragment by lazy { TrendMenFragment() }
-    private val womenFrame: TrendWomenFragment by lazy { TrendWomenFragment() }
 
     var photoList_men = arrayListOf<Uri>()
     var photoList_women = arrayListOf<Uri>()
+    private var selectedTabIndex:Int=0
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -66,42 +69,21 @@ class StylistMainPage : Fragment() {
         storageReference_trendMen=storage.reference.child("manTrend")
         storageReference_trendWomen=storage.reference.child("womanTrend")
 
-    }
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding= FragmentStylistMainPageBinding.inflate(inflater, container, false)
-
-        createFragments()
-        return binding.root
-    }
-    private fun createFragments() {
-        try{
-            val menFrame = TrendMenFragment.newInstance(photoList_men)
-            val womenFrame = TrendWomenFragment.newInstance(photoList_women)
-
-            val fragmentTransaction = childFragmentManager.beginTransaction()
-
-            // 프래그먼트 재사용하기
-            if (menFrame.isAdded) {
-                fragmentTransaction.show(menFrame)
-            } else {
-                fragmentTransaction.add(binding.frameView.id, menFrame, "menFrame")
-            }
-            if (womenFrame.isAdded) {
-                fragmentTransaction.hide(womenFrame)
-            } else {
-                fragmentTransaction.add(binding.frameView.id, womenFrame, "womenFrame")
-            }
-            fragmentTransaction.commit()
-
+        //코루틴 사용 : 데이터 비동기적으로 가져오고, 모두 받아오면 그 후에 탭 클릭 이벤트 처리
+        GlobalScope.launch(Dispatchers.Main) {
+            getTrendImg()
             binding.trendTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     tab?.let {
                         when (it.position) {
-                            0 -> showFragment(menFrame)
-                            1 -> showFragment(womenFrame)
+                            0 -> {
+                                selectedTabIndex=0
+                                updatePhotoAdapter()
+                            }
+                            1 ->{
+                                selectedTabIndex=1
+                                updatePhotoAdapter()
+                            }
                         }
                     }
                 }
@@ -110,25 +92,71 @@ class StylistMainPage : Fragment() {
 
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
             })
-        }catch (e:Exception){
-            Log.e("jeon", "Error in createFragments: ${e.message}")
-            e.printStackTrace()
         }
 
     }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding= FragmentStylistMainPageBinding.inflate(inflater, container, false)
+        photoAdapter_trend = Stylist_TrendImgAdapter(requireContext())
+        val layoutManagerTrend = LinearLayoutManager(requireContext())
+        layoutManagerTrend.orientation = LinearLayoutManager.HORIZONTAL
 
-    private fun showFragment(fragment: Fragment) {
-        val fragmentTransaction = childFragmentManager.beginTransaction()
 
-        if (fragment.isAdded) {
-            fragmentTransaction.show(fragment)
+        binding.recyclerView1.layoutManager = layoutManagerTrend
+        binding.recyclerView1.adapter = photoAdapter_trend
+
+        return binding.root
+    }
+
+    fun getTrendImg(){
+        storageReference_trendMen.listAll()
+            .addOnSuccessListener { result->
+                for(item in result.items){
+                    item.downloadUrl.addOnSuccessListener {imageUri->
+                        Log.d("jeon","$imageUri")
+                        photoList_men.add(imageUri)
+                    }
+                        .addOnFailureListener {
+                            Log.d("jeon","이미지 다운로드 url 가져오기 실패")
+                        }
+
+                }
+            }
+            .addOnFailureListener {
+                Log.d("jeon", "이미지 불러오기 실패")
+            }
+
+        storageReference_trendWomen.listAll()
+            .addOnSuccessListener { result->
+                for(item in result.items){
+                    item.downloadUrl.addOnSuccessListener {imageUri->
+                        Log.d("jeon","$imageUri")
+                        photoList_women.add(imageUri)
+                    }
+                        .addOnFailureListener {
+                            Log.d("jeon","이미지 다운로드 url 가져오기 실패")
+                        }
+
+                }
+            }
+            .addOnFailureListener {
+                Log.d("jeon", "이미지 불러오기 실패")
+            }
+
+
+    }
+    private fun updatePhotoAdapter() {
+        val selectedPhotoList = if (selectedTabIndex == 0) {
+            photoList_men
         } else {
-            fragmentTransaction.hide(if (fragment == menFrame) womenFrame else menFrame)
-            fragmentTransaction.add(binding.frameView.id, fragment, fragment.javaClass.simpleName)
+            photoList_women
         }
-
-        fragmentTransaction.commit()
+            photoAdapter_trend.setPhotoList(selectedPhotoList)
     }
+
     fun getShopObject(callback: (ShopInfo?)->Unit){
         var stylistInfo:ShopInfo?=null
         val docRef=db.collection("stylists").document(MyAccountApplication.email.toString())
@@ -143,5 +171,54 @@ class StylistMainPage : Fragment() {
 
     }
 
+}
 
+class Stylist_TrendImgViewHolder(val binding: TrendimgitemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(photoUri: Uri){
+        //Glide - 구글에서 만든 이미지 로더 라이브러리
+        //기술문서 작성 시 추가할 것
+        Glide.with(binding.trendimgData.context)
+            .load(photoUri)
+            .into(binding.trendimgData)
+    }
+}
+
+class Stylist_TrendImgAdapter(val context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val photoList = mutableListOf<Uri>()
+    fun setPhotoList(photoList:List<Uri>){
+        this.photoList.clear()
+        this.photoList.addAll(photoList)
+        notifyDataSetChanged()
+    }
+
+    //뷰 홀더
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return Stylist_TrendImgViewHolder(
+            TrendimgitemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    //각 항목 구성
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as Stylist_TrendImgViewHolder).binding
+
+        val photoUri = photoList[position]
+        holder.bind(photoUri)
+
+
+    }
+
+    //항목 개수
+    override fun getItemCount(): Int {
+        return photoList.size
+    }
 }
