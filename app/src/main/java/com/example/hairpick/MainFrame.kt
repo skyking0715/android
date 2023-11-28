@@ -14,9 +14,7 @@ class MainFrame : AppCompatActivity() {
     private val requestFrame: RequestPage by lazy { RequestPage() }
     private val clientMainFrame: ClientMainPage by lazy { ClientMainPage() }
     private val client3Frame: Client_3 by lazy { Client_3() }
-    private val client4Frame: Client_4 by lazy { Client_4() }
     private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
-    private var state:Int=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityMainFrameBinding.inflate(layoutInflater)
@@ -38,12 +36,6 @@ class MainFrame : AppCompatActivity() {
                     "1:1채팅"-> clientChatFrame
                     else ->requestFrame
                 }
-                val frame=supportFragmentManager.findFragmentById(binding.frameView.id)
-                if(frame!=null &&frame is Client_4){
-                   state=1
-                }else{
-                    state=0
-                }
                     showHideFragment(selected)
 
             }
@@ -62,12 +54,9 @@ class MainFrame : AppCompatActivity() {
      fun showHideFragment(selectedFragment: Fragment) {
 
         val transaction = supportFragmentManager.beginTransaction()
-        val fragments = listOf(clientMainFrame, client3Frame, requestFrame, client4Frame, clientChatFrame)
+        val fragments = listOf(clientMainFrame, client3Frame, requestFrame,  clientChatFrame)
 
-        if(state==1){
-            transaction.replace(binding.frameView.id, selectedFragment, selectedFragment.javaClass.simpleName)
-        }
-        else{
+
             for (fragment in fragments) {
                 if (fragment != selectedFragment && fragment.isAdded) {
                     transaction.hide(fragment) //이미 생성되어있다면, 숨김
@@ -80,7 +69,7 @@ class MainFrame : AppCompatActivity() {
                 transaction.add(binding.frameView.id, selectedFragment, selectedFragment.javaClass.simpleName)
             }
 
-        }
+
 
 
         transaction.commit()

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.hairpick.databinding.ChatUserDataBinding
-import com.example.hairpick.databinding.FragmentClient4Binding
 import com.example.hairpick.databinding.FragmentClientChatBinding
 import com.example.hairpick.databinding.ShopDataBinding
 

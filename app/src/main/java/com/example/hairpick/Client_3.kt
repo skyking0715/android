@@ -2,6 +2,7 @@ package com.example.hairpick
 
 import android.content.Context
 import android.content.DialogInterface.OnClickListener
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
@@ -189,23 +190,10 @@ class Client_3 : Fragment(){
 
     }
     private fun navigateToClient4(shopInfo: ShopInfo) {
-        val fragment = Client_4()
-        val bundle = Bundle()
-        bundle.putString("shopId",shopInfo.id)
-        fragment.arguments = bundle
 
-        // 프래그먼트 트랜잭션 시작
-        val transaction = activity?.supportFragmentManager?.beginTransaction()
-        transaction?.addToBackStack(null) //백 스택 사용
-        if (transaction != null) {
-            // R.id.frameView는 ClientMainFrame의 프래임 레이아웃입니다.
-           transaction.replace(R.id.frameView, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-
-        } else {
-            Log.e("Jeon", "Activity is null.")
-        }
+        val intent: Intent =Intent(activity,Client4::class.java)
+        intent.putExtra("shopId",shopInfo.id)
+        startActivity(intent)
 
     }
 

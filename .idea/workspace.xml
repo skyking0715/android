@@ -17,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
@@ -31,7 +32,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientChatFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientChatFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_4.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_4.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainFrame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainFrame.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainFrame_stylist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainFrame_stylist.kt" afterDir="false" />
@@ -40,11 +41,12 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ShopInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ShopInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist4.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistMainPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistMainPage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/TrendMenFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/TrendWomenFragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistShop.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistShop.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist_4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist_4.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/appicon_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/appicon_upperbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bookinfo_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bookinfo_upperbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/camera_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/camera_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/divider.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/divider.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/profile_upperbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/profile_upperbar.xml" afterDir="false" />
@@ -55,7 +57,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat_user_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chat_user_data.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/chatting1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chatting1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_4.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_bid.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_bid.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_client_chat.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_stylist_4.xml" afterDir="false" />
@@ -64,6 +66,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login_monitor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/main_one.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/main_one.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/recommendimgitem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/recommendimgitem.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/scheduleitem.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/scheduleitem.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/shop_data.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/shop_data.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/sign_in_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/sign_in_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/stylist_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/stylist_4.xml" afterDir="false" />
@@ -207,6 +210,9 @@
       <recent name="com.example.hairpick" />
     </key>
     <key name="android.template.631289859">
+      <recent name="com.example.hairpick" />
+    </key>
+    <key name="android.template.417794769">
       <recent name="com.example.hairpick" />
     </key>
     <key name="android.template.-2003995044">
