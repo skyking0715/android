@@ -9,5 +9,4 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tabselected">#FE8EB7</color>
     <color name="tabunselected">#585858</color>
-    <color name="colorAccent">#FFA000</color>
 </resources>

@@ -18,16 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HairPick."
         tools:targetApi="31">
-        <service
-            android:name=".MyFirebaseMessageService"
-            android:enabled="true"
-            android:exported="true"
-            >
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
         <activity
             android:name=".Client4"
             android:exported="false" />
@@ -45,15 +35,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_stat_ic_notification"/>
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent"/>
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="fcm_default_channel"/>
 
         <activity
             android:name=".SignInPage"
