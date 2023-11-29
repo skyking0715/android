@@ -15,6 +15,9 @@ class MainFrame : AppCompatActivity() {
     private val clientMainFrame: ClientMainPage by lazy { ClientMainPage() }
     private val client3Frame: Client_3 by lazy { Client_3() }
     private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
+
+    private val clientBidFrame: ClientBidFragment by lazy { ClientBidFragment() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityMainFrameBinding.inflate(layoutInflater)
@@ -32,7 +35,8 @@ class MainFrame : AppCompatActivity() {
                     "home"->clientMainFrame
                     "미용실"->client3Frame
                     "의뢰하기"->requestFrame
-                    "bid"->clientMainFrame
+                    //"bid"->clientMainFrame
+                    "bid"->clientBidFrame
                     "1:1채팅"-> clientChatFrame
                     else ->requestFrame
                 }

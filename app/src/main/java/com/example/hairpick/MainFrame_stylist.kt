@@ -16,6 +16,9 @@ class MainFrame_stylist : AppCompatActivity() {
     //private val client3Frame: Client_3 by lazy { Client_3() }
     //private val client4Frame: Client_4 by lazy { Client_4() }
     //private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
+
+    private val stylist4Frame: Stylist_4 by lazy { Stylist_4() }
+    private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,9 +33,9 @@ class MainFrame_stylist : AppCompatActivity() {
                 var selected: Fragment =when(tab?.text){
                     "home"->stylistMainFrame
                     "프로필"->stylistShopFrame
-                    //"의뢰하기"->
+                    "의뢰하기"->stylist4Frame
                     //"bid"->
-                    //"1:1채팅"->
+                    "1:1채팅"->clientChatFrame
                     else ->stylistMainFrame
                 }
                 showHideFragment(selected)
