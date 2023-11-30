@@ -3,7 +3,7 @@ package com.example.hairpick
 import android.security.identity.AccessControlProfile
 import android.util.Log
 
-class requestInfo(id:String,address:String) {
+class requestInfo() {
     lateinit var id:String
     lateinit var address:String
     lateinit var profile: String
@@ -12,7 +12,9 @@ class requestInfo(id:String,address:String) {
     lateinit var desc:String
 
 
-    init {
+
+
+    constructor(id:String, address:String):this(){
         this.id=id
         this.address=address
     }
