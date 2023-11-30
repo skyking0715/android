@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hairpick.databinding.ActivityMainFrameBinding
 import com.example.hairpick.databinding.FragmentClientBidBinding
 import com.example.hairpick.databinding.ItemClientBidBinding
-import com.example.hairpick.databinding.Stylist4Binding
 
 class MyViewHolder(val binding: ItemClientBidBinding):
     RecyclerView.ViewHolder(binding.root)
