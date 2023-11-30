@@ -16,10 +16,6 @@ class MainFrame_stylist : AppCompatActivity() {
     private lateinit var binding: ActivityMainFrameStylistBinding
     private val stylistMainFrame: StylistMainPage by lazy { StylistMainPage() }
     private val stylistShopFrame: StylistShop by lazy { StylistShop() }
-    //private val client3Frame: Client_3 by lazy { Client_3() }
-    //private val client4Frame: Client_4 by lazy { Client_4() }
-    //private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
-
     private val stylist4Frame: Stylist_4 by lazy { Stylist_4() }
     private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,7 +72,7 @@ class MainFrame_stylist : AppCompatActivity() {
     private fun showHideFragment(selectedFragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
 
-        val fragments = listOf(stylistMainFrame,stylistShopFrame)
+        val fragments = listOf(stylistMainFrame,stylistShopFrame,stylist4Frame,clientChatFrame)
 
         for (fragment in fragments) {
             if (fragment != selectedFragment && fragment.isAdded) {

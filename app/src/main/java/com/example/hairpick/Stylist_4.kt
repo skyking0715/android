@@ -17,6 +17,7 @@ import com.example.hairpick.databinding.FragmentStylist4Binding
 import com.example.hairpick.databinding.FragmentStylistShopBinding
 import com.example.hairpick.databinding.ImgitemBinding
 import com.example.hairpick.databinding.ItemClientBidBinding
+import com.example.hairpick.databinding.Stylist4RequestitemBinding
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -25,6 +26,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+import java.util.concurrent.CountDownLatch
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,11 +39,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Request(){
+    lateinit var id:String
     lateinit var profile: String
     lateinit var title:String
     lateinit var desc:String
     //Shop 클래스는 대표 이미지와 가게이름
-    constructor(profile: String, title: String, desc:String):this(){
+    constructor(id:String,profile: String, title: String, desc:String):this(){
+        this.id=id
         this.profile=profile
         this.title=title
         this.desc=desc
@@ -49,11 +53,11 @@ class Request(){
 }
 class Stylist_4 : Fragment() {
     lateinit var binding:FragmentStylist4Binding
+    lateinit var itembinding:Stylist4RequestitemBinding
     lateinit var db: FirebaseFirestore
-    lateinit var storage: FirebaseStorage
+    //lateinit var storage: FirebaseStorage
     lateinit var firestore: FirebaseFirestore
     lateinit var collectionRef: CollectionReference
-    lateinit var storageRef: StorageReference
     lateinit var datas:MutableList<Request>
     lateinit var adapter:S4Adapter
     // TODO: Rename and change types of parameters
@@ -67,7 +71,7 @@ class Stylist_4 : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
         db= FirebaseFirestore.getInstance()
-        storage= Firebase.storage
+
         firestore=FirebaseFirestore.getInstance()
         collectionRef=firestore.collection("requests")
         datas = mutableListOf<Request>()
@@ -79,23 +83,15 @@ class Stylist_4 : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding= FragmentStylist4Binding.inflate(inflater,container,false)
+        itembinding= Stylist4RequestitemBinding.inflate(layoutInflater)
 
         getReqDatas()
-
-
-
-
-      /*  datas.add(R.drawable.re1)
-        datas.add(R.drawable.re2)
-        datas.add(R.drawable.re3)
-        datas.add(R.drawable.re4)
-        datas.add(R.drawable.re5)*/
-
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        binding.extraPic.layoutManager=layoutManager
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        binding.stylist4Recycle.layoutManager=layoutManager
 
         adapter = S4Adapter(datas)
-        binding.extraPic.adapter = adapter
+        binding.stylist4Recycle.adapter = adapter
 
         return binding.root
     }
@@ -108,14 +104,17 @@ class Stylist_4 : Fragment() {
             .addOnSuccessListener {
                 for(document in it){
                     val reqDoc=document.toObject(requestInfo::class.java)
-                    val clientId=reqDoc.id
-                    val request=Request(reqDoc.profile,reqDoc.title,reqDoc.desc) //이미지리스트 제외 리퀘스트 정보 가져오기
+                    val request=Request(reqDoc.id,reqDoc.profile,reqDoc.title,reqDoc.desc) //이미지리스트 제외 리퀘스트 정보 가져오기
 
                     //TODO: 레퍼런스 이미지 리스트 가져오기
-                    if (clientId!=null)
-                        storageRef=storage.reference.child("reqImages/"+clientId)
+                    /*if (clientId!=null)
+                        storageRef=storage.reference.child("reqImages/"+clientId)*/
                     //adapter.addRequest(request)
+                    //dataBinding(itembinding,request)
+                    datas.add(request)
                 }
+
+                adapter.notifyDataSetChanged()
             }
             .addOnFailureListener {
                 Log.w("Jeon", "Error getting documents")
@@ -123,73 +122,77 @@ class Stylist_4 : Fragment() {
 
     }
 
-    fun dataBinding(binding: FragmentStylistShopBinding, shopData:ShopInfo){
-        binding.shopName.text=shopData.shopName
-        binding.shopAddress.text=shopData.shopAddress
-        binding.priceText.text=shopData.priceList
-        binding.shopNum.text=shopData.shopNum
-        binding.shopDesc.text=shopData.shopDesc
-
-        storageRef.listAll()
-            .addOnSuccessListener { result->
-                val urlList= mutableListOf<Uri>()
-
-                val tasks=result.items.map{item->
-                    item.downloadUrl.addOnSuccessListener { imageUri->
-                        urlList.add(imageUri)
-                    }
-
-                }
-
-                Tasks.whenAllSuccess<Unit>(tasks)
-                    .addOnSuccessListener {
-                        for((index,uri) in urlList.withIndex()){
-                            when(index){
-                                0-> Glide.with(this).load(uri).into(binding.img0)
-                                1-> Glide.with(this).load(uri).into(binding.img1)
-                                2-> Glide.with(this).load(uri).into(binding.img2)
-                                3-> Glide.with(this).load(uri).into(binding.img3)
-                                4-> Glide.with(this).load(uri).into(binding.img4)
-                            }
-                        }
-                    }.addOnFailureListener {
-                        Log.d("jeon", "이미지 다운로드 실패")
-                    }
-
-            }
-            .addOnFailureListener {
-                Log.d("jeon", "이미지 불러오기 실패")
-            }
-
-    }
 }
 
+class S4ViewHolder(val binding: Stylist4RequestitemBinding):
+    RecyclerView.ViewHolder(binding.root){
 
-
-class S4ViewHolder(val binding: ImgitemBinding):
-    RecyclerView.ViewHolder(binding.root)
+    }
 
 class S4Adapter(val datas: MutableList<Request>):
 //@TODO 1: datas 원소타입 바꾸기
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    fun addRequest(request: Request) {
+    val storage= Firebase.storage
+   /* fun addRequest(request: Request) {
         datas.add(request)
         notifyDataSetChanged()
-    }
+    }*/
     override fun getItemCount(): Int {
         return datas.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return S4ViewHolder(ImgitemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return S4ViewHolder(Stylist4RequestitemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val binding = (holder as S4ViewHolder).binding
+        val request = datas[position]
 
-        //val drawable = ContextCompat.getDrawable(binding.root.context, datas[position])
-        //binding.imgData.setImageDrawable(drawable)
+        // 프로필 이미지, 제목, 설명 설정
+        Glide.with(binding.root.context).load(request.profile).into(binding.profileView)
+        binding.titleView.text = request.title
+        binding.descView.text = request.desc
+
+        // 참고 이미지 리스트 가져오기 및 설정
+        val storageRef = storage.reference.child("reqImages/" +datas[position].id)
+        storageRef.listAll()
+            .addOnSuccessListener { result ->
+                val urlList = mutableListOf<Uri>()
+
+                val tasks = result.items.map { item ->
+                    val downloadTask=item.downloadUrl.addOnSuccessListener { imageUri ->
+                        urlList.add(imageUri)
+                    }
+                        .addOnFailureListener {
+                            Log.d("jeon","이미지 다운로드 실패")
+                        }
+                    downloadTask
+                }
+
+                Tasks.whenAllComplete(tasks)
+                    .addOnSuccessListener {
+                        for ((index, uri) in urlList.withIndex()) {
+                            // 동적으로 이미지 뷰 설정
+                            when (index) {
+                                0 -> Glide.with(binding.root.context).load(uri).into(binding.image0)
+                                1 -> Glide.with(binding.root.context).load(uri).into(binding.image1)
+                                2 -> Glide.with(binding.root.context).load(uri).into(binding.image2)
+                                else -> {
+                                    // 이미지 뷰의 개수를 초과하는 경우 처리
+                                    Log.e("jeon", "Image view count exceeded the limit.")
+                                }
+                            }
+                        }
+                    }
+                    .addOnFailureListener {
+                        Log.d("jeon", "이미지 다운로드 실패")
+                    }
+            }
+
+            .addOnFailureListener {
+                Log.d("jeon", "이미지 불러오기 실패")
+            }
 
     }
 }

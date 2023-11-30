@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:background="#1B000000">
 
 
 
@@ -50,11 +51,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
+       <!-- <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/extraPic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" />-->
 
+      <!--  테스트용-->
+        <ImageView
+            android:id="@+id/image0"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
 
     </LinearLayout>
 
