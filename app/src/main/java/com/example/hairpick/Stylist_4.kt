@@ -108,8 +108,12 @@ class Stylist_4 : Fragment() {
             .addOnSuccessListener {
                 for(document in it){
                     val reqDoc=document.toObject(requestInfo::class.java)
-                    Log.d("Jeon","datas:$reqDoc")
-                    //val request=Request(reqDoc.profile,reqDoc.title,reqDoc.desc) //이미지리스트 제외 리퀘스트 정보 가져오기
+                    val clientId=reqDoc.id
+                    val request=Request(reqDoc.profile,reqDoc.title,reqDoc.desc) //이미지리스트 제외 리퀘스트 정보 가져오기
+
+                    //TODO: 레퍼런스 이미지 리스트 가져오기
+                    if (clientId!=null)
+                        storageRef=storage.reference.child("reqImages/"+clientId)
                     //adapter.addRequest(request)
                 }
             }
