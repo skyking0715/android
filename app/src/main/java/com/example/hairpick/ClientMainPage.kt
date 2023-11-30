@@ -88,6 +88,7 @@ class ClientMainPage : Fragment() {
                 MyAccountApplication.sex=clientInfo.sex
                 MyAccountApplication.name=clientInfo.name
                 MyAccountApplication.address=clientInfo.adress
+                MyAccountApplication.profile=clientInfo.imgUrl
                 setUserName()
 
                 if(MyAccountApplication.sex==1){

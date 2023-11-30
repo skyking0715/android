@@ -12,6 +12,7 @@ class MyAccountApplication:MultiDexApplication() {
         var address:String?="주소 없음"
         var sex:Int=1
         var name:String?=null
+        var profile:String?=null
 
         fun checkAuth():Boolean{
             val currentUser=auth.currentUser

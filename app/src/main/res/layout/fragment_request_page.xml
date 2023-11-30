@@ -5,6 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".RequestPage">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
     <!-- TODO: Update blank fragment layout -->
   <LinearLayout
       android:layout_width="match_parent"
@@ -23,7 +30,7 @@
               android:layout_height="wrap_content"
               android:drawableTop="@drawable/camera_button"
               android:backgroundTint="@color/white"
-              android:text="0 / 10"
+              android:text="0 / 5"
               android:textColor="@color/black"
               style="?android:attr/borderlessButtonStyle"/>
 
@@ -60,24 +67,37 @@
       <EditText
           android:id="@+id/descEdit"
           android:layout_width="match_parent"
-          android:layout_height="48dp"
+          android:layout_height="wrap_content"
+          android:maxLines="10"
           android:hint="원하시는 스타일을 상세히 기재해주세요"
           />
 
 
-      <Button
-          android:id="@+id/requestBtn"
-          android:layout_width="200dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="50dp"
-          android:textColor="@color/black"
-          android:textStyle="bold"
-          android:backgroundTint="#FFFE8EB7"
-          android:text="의뢰하기"
-          android:layout_gravity="center_horizontal"/>
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_horizontal">
+
+          <Button
+              android:id="@+id/requestBtn"
+              android:layout_width="200dp"
+              android:layout_height="wrap_content"
+              android:textColor="@color/black"
+              android:textStyle="bold"
+              android:backgroundTint="#FFFE8EB7"
+              android:text="의뢰하기"
+              android:layout_gravity="center_horizontal"
+              android:layout_alignParentBottom="true"
+              android:layout_marginBottom="20dp"
+              android:layout_marginTop="20dp"
+              />
+      </RelativeLayout>
+
+
 
 
 
   </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
