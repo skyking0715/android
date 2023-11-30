@@ -14,95 +14,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="산격동 - 주변 의뢰"
+            android:text="[산격동] 주변 의뢰"
             android:textStyle="bold"
             android:textSize="30dp"
+            android:textColor="@color/black"
             android:layout_gravity="center_horizontal"/>
 
-
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stylist4Recycle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="10dp">
-
-
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="100dp"
-                android:src="@drawable/dwimg1"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="사진과 같은 머리를 하고 싶습니다."
-                android:textSize="20dp"
-                android:maxLines="3"
-                android:ellipsize="end"/>
-
-
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="참고사진"
-            android:layout_marginLeft="10dp"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/extraPic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
-
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="상세설명"
-            android:textStyle="bold"
-            android:layout_marginLeft="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="임시텍스트 임시텍스트 임시텍스트 임시텍스트 임시텍스트 임시텍스트"
-            android:layout_marginLeft="10dp"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp">
-
-            <EditText
-                android:id="@+id/bidprice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="제안가격 입력"
-                android:layout_marginRight="20dp"/>
-
-            <Button
-                android:id="@+id/bidbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="bid"
-                />
-
-
-
-        </LinearLayout>
-
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            />
 
     </LinearLayout>
 
