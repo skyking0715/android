@@ -35,7 +35,6 @@ class MainFrame : AppCompatActivity() {
                     "home"->clientMainFrame
                     "미용실"->client3Frame
                     "의뢰하기"->requestFrame
-                    //"bid"->clientMainFrame
                     "bid"->clientBidFrame
                     "1:1채팅"-> clientChatFrame
                     else ->requestFrame
@@ -58,7 +57,7 @@ class MainFrame : AppCompatActivity() {
      fun showHideFragment(selectedFragment: Fragment) {
 
         val transaction = supportFragmentManager.beginTransaction()
-        val fragments = listOf(clientMainFrame, client3Frame, requestFrame,  clientChatFrame)
+        val fragments = listOf(clientMainFrame, client3Frame, requestFrame,  clientChatFrame,clientBidFrame)
 
 
             for (fragment in fragments) {

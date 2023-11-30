@@ -11,7 +11,7 @@
     tools:context=".SignUpClient"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="10dp">
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/title"
@@ -39,7 +39,7 @@
         style="?android:attr/borderlessButtonStyle"/>
     <EditText
         android:id="@+id/idEdit"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="아이디(이메일)"
        />
@@ -53,7 +53,7 @@
 
     <EditText
         android:id="@+id/nameEdit"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="이름"
         android:layout_marginTop="20dp"
@@ -61,7 +61,7 @@
         android:maxLength="4"/>
 
     <RadioGroup
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="10dp">
@@ -80,7 +80,7 @@
 
     <EditText
         android:id="@+id/digitEdit"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="전화번호"
         android:layout_marginTop="10dp"
@@ -88,7 +88,7 @@
 
     <EditText
         android:id="@+id/addressEdit"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="주소"
         android:layout_marginTop="10dp"

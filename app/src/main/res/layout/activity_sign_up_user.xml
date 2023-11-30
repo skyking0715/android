@@ -9,7 +9,8 @@
     android:layout_height="match_parent"
     tools:context=".SignUpUser"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:padding="20dp">
 
     <ImageView
         android:layout_width="100dp"
@@ -27,14 +28,14 @@
 
     <EditText
         android:id="@+id/idEdit"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="아이디(이메일)"
         android:layout_marginTop="30dp"
         />
     <EditText
         android:id="@+id/pwEdit"
-        android:layout_width="380dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="비밀번호(6자 이상)"
         android:selectAllOnFocus="true"
