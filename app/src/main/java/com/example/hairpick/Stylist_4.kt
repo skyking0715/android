@@ -1,6 +1,8 @@
 package com.example.hairpick
 
+import android.app.ProgressDialog.show
 import android.content.Context
+import android.content.DialogInterface
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -91,7 +96,7 @@ class Stylist_4 : Fragment() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.stylist4Recycle.layoutManager=layoutManager
 
-        adapter = S4Adapter(datas)
+        adapter = S4Adapter(datas,requireContext())
         binding.stylist4Recycle.adapter = adapter
         binding.areaTxt.text="[${MyAccountApplication.address}] "+"주변 의뢰"
 
@@ -131,7 +136,7 @@ class S4ViewHolder(val binding: Stylist4RequestitemBinding):
     val nestedRecyclerView: RecyclerView = binding.nestedRecyclerView
     }
 
-class S4Adapter(val datas: MutableList<Request>):
+class S4Adapter(val datas: MutableList<Request>,val context: Context):
     RecyclerView.Adapter<S4ViewHolder>() {
     val storage= Firebase.storage
      val userId:MutableList<String> = mutableListOf()
@@ -198,23 +203,46 @@ class S4Adapter(val datas: MutableList<Request>):
 
         //버튼 클릭 리스너
         binding.bidbtn.setOnClickListener {
-            val img=MyAccountApplication.profile
-            val price=binding.bidprice.getText().toString()
-            val name=MyAccountApplication.name
-            val shopName=MyAccountApplication.shopName
+           bid(binding,position)
+            // 소프트 키보드를 내리는 부분 추가
+            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.bidprice.windowToken, 0)
+        }
+    }
+    fun bid(binding:Stylist4RequestitemBinding,position:Int){
+        val img=MyAccountApplication.profile
+        val price=binding.bidprice.getText().toString()
+        val name=MyAccountApplication.name
+        val shopName=MyAccountApplication.shopName
 
-            val suggest=bidForm(img, price ,name,shopName)
+        val suggest=bidForm(img, price ,name,shopName)
 
-            val db = FirebaseFirestore.getInstance()
-            val userID:String=userId.get(position)
-            val reqCollectionRef = db.collection("requests").document(userID).collection("bids").document(MyAccountApplication.email.toString())
-            reqCollectionRef.set(suggest)
-                .addOnSuccessListener {docRef->
-                    Log.d("jeon","Item added")
-                }
-                .addOnFailureListener {
-                    Log.d("jeon",  "Error adding item")
-                }
+        val db = FirebaseFirestore.getInstance()
+        val userID:String=userId.get(position)
+        val reqCollectionRef = db.collection("requests").document(userID).collection("bids").document(MyAccountApplication.email.toString())
+        reqCollectionRef.set(suggest)
+            .addOnSuccessListener {docRef->
+                successDialog(context)
+            }
+            .addOnFailureListener {
+                failDialog(context)
+            }
+    }
+
+    fun successDialog(context: Context){
+        AlertDialog.Builder(context).run {
+            setTitle("Bid")
+            setMessage("제안서가 성공적으로 전송되었습니다!")
+            setPositiveButton("확인",null)
+            show()
+        }
+    }
+    fun failDialog(context: Context){
+        AlertDialog.Builder(context).run{
+            setTitle("Bid 실패")
+            setMessage("다시 시도해주세요.")
+            setPositiveButton("확인",null)
+            show()
         }
     }
 }
