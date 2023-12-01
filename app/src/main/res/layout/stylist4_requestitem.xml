@@ -19,7 +19,7 @@
             android:id="@+id/profileView"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:src="@drawable/dwimg1"
+            android:src="@drawable/profile"
 
             />
         <TextView
