@@ -93,11 +93,17 @@ class Stylist_4 : Fragment() {
 
         adapter = S4Adapter(datas)
         binding.stylist4Recycle.adapter = adapter
+        binding.areaTxt.text="[${MyAccountApplication.address}] "+"주변 의뢰"
 
         return binding.root
     }
-    fun getReqDatas(){
 
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        getReqDatas()
+    }
+    fun getReqDatas(){
+        datas.clear()
         val searchAddress:String=MyAccountApplication.address.toString()
         Log.d("Jeon", searchAddress)
         collectionRef.whereEqualTo("address",searchAddress)
