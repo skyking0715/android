@@ -18,6 +18,7 @@ import com.example.hairpick.databinding.FragmentStylistShopBinding
 import com.example.hairpick.databinding.ImgitemBinding
 import com.example.hairpick.databinding.ItemClientBidBinding
 import com.example.hairpick.databinding.Stylist4RequestitemBinding
+import com.example.hairpick.databinding.TrendimgitemBinding
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -106,11 +107,6 @@ class Stylist_4 : Fragment() {
                     val reqDoc=document.toObject(requestInfo::class.java)
                     val request=Request(reqDoc.id,reqDoc.profile,reqDoc.title,reqDoc.desc) //이미지리스트 제외 리퀘스트 정보 가져오기
 
-                    //TODO: 레퍼런스 이미지 리스트 가져오기
-                    /*if (clientId!=null)
-                        storageRef=storage.reference.child("reqImages/"+clientId)*/
-                    //adapter.addRequest(request)
-                    //dataBinding(itembinding,request)
                     datas.add(request)
                 }
 
@@ -126,28 +122,32 @@ class Stylist_4 : Fragment() {
 
 class S4ViewHolder(val binding: Stylist4RequestitemBinding):
     RecyclerView.ViewHolder(binding.root){
-
+    val nestedRecyclerView: RecyclerView = binding.nestedRecyclerView
     }
 
 class S4Adapter(val datas: MutableList<Request>):
-//@TODO 1: datas 원소타입 바꾸기
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    RecyclerView.Adapter<S4ViewHolder>() {
     val storage= Firebase.storage
-   /* fun addRequest(request: Request) {
-        datas.add(request)
-        notifyDataSetChanged()
-    }*/
+
     override fun getItemCount(): Int {
         return datas.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): S4ViewHolder {
         return S4ViewHolder(Stylist4RequestitemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: S4ViewHolder, position: Int) {
         val binding = (holder as S4ViewHolder).binding
         val request = datas[position]
+
+        // 중첩된 RecyclerView를 초기화하고 설정합니다.
+        val layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
+        holder.nestedRecyclerView.layoutManager = layoutManager
+
+        // 중첩된 RecyclerView에 대한 어댑터를 생성하고 설정합니다.
+        val nestedAdapter = innerAdapter()
+        holder.nestedRecyclerView.adapter = nestedAdapter
 
         // 프로필 이미지, 제목, 설명 설정
         Glide.with(binding.root.context).load(request.profile).into(binding.profileView)
@@ -173,16 +173,7 @@ class S4Adapter(val datas: MutableList<Request>):
                 Tasks.whenAllComplete(tasks)
                     .addOnSuccessListener {
                         for ((index, uri) in urlList.withIndex()) {
-                            // 동적으로 이미지 뷰 설정
-                            when (index) {
-                                0 -> Glide.with(binding.root.context).load(uri).into(binding.image0)
-                                1 -> Glide.with(binding.root.context).load(uri).into(binding.image1)
-                                2 -> Glide.with(binding.root.context).load(uri).into(binding.image2)
-                                else -> {
-                                    // 이미지 뷰의 개수를 초과하는 경우 처리
-                                    Log.e("jeon", "Image view count exceeded the limit.")
-                                }
-                            }
+                            nestedAdapter.addPhoto(uri)
                         }
                     }
                     .addOnFailureListener {
@@ -194,5 +185,46 @@ class S4Adapter(val datas: MutableList<Request>):
                 Log.d("jeon", "이미지 불러오기 실패")
             }
 
+
+    }
+}
+class innerViewHolder(val binding: ImgitemBinding):
+    RecyclerView.ViewHolder(binding.root){
+    fun bind(photoUri: Uri){
+        //Glide - 구글에서 만든 이미지 로더 라이브러리
+        //기술문서 작성 시 추가할 것
+        Glide.with(binding.imgData.context)
+            .load(photoUri)
+            .into(binding.imgData)
+    }
+
+}
+class innerAdapter():
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val photoList = mutableListOf<Uri>()
+    fun addPhoto(uri: Uri) {
+        photoList.add(uri)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecyclerView.ViewHolder {
+        return innerViewHolder(
+            ImgitemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as innerViewHolder).bind(photoList[position])
+    }
+
+    override fun getItemCount(): Int {
+        return photoList.size
     }
 }
