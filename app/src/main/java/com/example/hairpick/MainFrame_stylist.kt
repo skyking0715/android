@@ -27,6 +27,7 @@ class MainFrame_stylist : AppCompatActivity() {
                 MyAccountApplication.name=stylistInfo.name
                 MyAccountApplication.address=stylistInfo.shopAddress
                 MyAccountApplication.profile=stylistInfo.img
+                MyAccountApplication.shopName=stylistInfo.shopName
 
             }else{
                 Log.d("jeon", "데이터 로드 실패")

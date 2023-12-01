@@ -112,7 +112,7 @@ class Stylist_4 : Fragment() {
                 for(document in it){
                     val reqDoc=document.toObject(requestInfo::class.java)
                     val request=Request(reqDoc.id,reqDoc.profile,reqDoc.title,reqDoc.desc) //이미지리스트 제외 리퀘스트 정보 가져오기
-
+                    adapter.addId(reqDoc.id)
                     datas.add(request)
                 }
 
@@ -134,7 +134,11 @@ class S4ViewHolder(val binding: Stylist4RequestitemBinding):
 class S4Adapter(val datas: MutableList<Request>):
     RecyclerView.Adapter<S4ViewHolder>() {
     val storage= Firebase.storage
+     val userId:MutableList<String> = mutableListOf()
 
+    fun addId(userId:String){
+       this.userId.add(userId)
+    }
     override fun getItemCount(): Int {
         return datas.size
     }
@@ -192,6 +196,26 @@ class S4Adapter(val datas: MutableList<Request>):
             }
 
 
+        //버튼 클릭 리스너
+        binding.bidbtn.setOnClickListener {
+            val img=MyAccountApplication.profile
+            val price=binding.bidprice.getText().toString()
+            val name=MyAccountApplication.name
+            val shopName=MyAccountApplication.shopName
+
+            val suggest=bidForm(img, price ,name,shopName)
+
+            val db = FirebaseFirestore.getInstance()
+            val userID:String=userId.get(position)
+            val reqCollectionRef = db.collection("requests").document(userID).collection("bids").document(MyAccountApplication.email.toString())
+            reqCollectionRef.set(suggest)
+                .addOnSuccessListener {docRef->
+                    Log.d("jeon","Item added")
+                }
+                .addOnFailureListener {
+                    Log.d("jeon",  "Error adding item")
+                }
+        }
     }
 }
 class innerViewHolder(val binding: ImgitemBinding):
@@ -203,6 +227,8 @@ class innerViewHolder(val binding: ImgitemBinding):
             .load(photoUri)
             .into(binding.imgData)
     }
+
+
 
 }
 class innerAdapter():
@@ -227,7 +253,7 @@ class innerAdapter():
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as innerViewHolder).bind(photoList[position])
+       (holder as innerViewHolder).bind(photoList[position])
     }
 
     override fun getItemCount(): Int {
