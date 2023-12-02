@@ -1,24 +1,24 @@
 package com.example.hairpick
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.hairpick.databinding.FragmentClientMainPageBinding
 import com.example.hairpick.databinding.FragmentStylistMainPageBinding
 import com.example.hairpick.databinding.ScheduleitemBinding
 import com.example.hairpick.databinding.TrendimgitemBinding
-import com.google.android.gms.tasks.Task
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -27,11 +27,8 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
-import kotlin.coroutines.resumeWithException
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,7 +40,10 @@ private const val ARG_PARAM2 = "param2"
  * Use the [StylistMainPage.newInstance] factory method to
  * create an instance of this fragment.
  */
+
+
 class StylistMainPage : Fragment() {
+
     lateinit var binding: FragmentStylistMainPageBinding
     lateinit var photoAdapter_trend: Stylist_TrendImgAdapter
     lateinit var scheduleAdapter: ScheduleAdapter
@@ -51,6 +51,8 @@ class StylistMainPage : Fragment() {
     lateinit var storage: FirebaseStorage
     lateinit var storageReference_trendMen: StorageReference
     lateinit var storageReference_trendWomen: StorageReference
+
+    private lateinit var viewModel: StylistViewModel
 
     var photoList_men = arrayListOf<Uri>()
     var photoList_women = arrayListOf<Uri>()
@@ -71,9 +73,14 @@ class StylistMainPage : Fragment() {
         storageReference_trendMen=storage.reference.child("manTrend")
         storageReference_trendWomen=storage.reference.child("womanTrend")
 
+        // ViewModel 초기화
+        viewModel = ViewModelProvider(this).get(StylistViewModel::class.java)
+
         //코루틴 사용 : 데이터 비동기적으로 가져오고, 모두 받아오면 그 후에 탭 클릭 이벤트 처리
         GlobalScope.launch(Dispatchers.Main) {
             getTrendImg()
+            viewModel.getTrendMen(storageReference_trendMen)
+            //viewModel.getTrendWomen(storageReference_trendWomen)
             binding.trendTabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     tab?.let {
@@ -96,6 +103,7 @@ class StylistMainPage : Fragment() {
             })
         }
 
+
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -115,12 +123,18 @@ class StylistMainPage : Fragment() {
         binding.recyclerView2.layoutManager=layoutManagerSchedule
         binding.recyclerView2.adapter=scheduleAdapter
 
+        // LiveData를 관찰하여 데이터가 변경될 때마다 어댑터를 업데이트합니다.
+        // 첫 시작 시 탭 안눌러도 자동으로 리사이클러뷰에 로드하기 위함.
+        viewModel.photoList.observe(viewLifecycleOwner, Observer { photoList ->
+            photoAdapter_trend.setPhotoList(photoList)
+        })
+
         sampleSchedule()
 
         return binding.root
     }
 
-    fun getTrendImg(){
+     fun getTrendImg(){
         storageReference_trendMen.listAll()
             .addOnSuccessListener { result->
                 for(item in result.items){
@@ -133,6 +147,7 @@ class StylistMainPage : Fragment() {
                         }
 
                 }
+
             }
             .addOnFailureListener {
                 Log.d("jeon", "이미지 불러오기 실패")
