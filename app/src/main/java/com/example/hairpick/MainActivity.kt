@@ -30,10 +30,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainFrame::class.java)
             startActivity(intent)
         }
-        binding.clientBidBtn.setOnClickListener {
-            val intent = Intent(this, ClientBid::class.java)
-            startActivity(intent)
-        }
 
         binding.stylistSignUp.setOnClickListener{
             val intent = Intent(this, SignUpDesigner::class.java)

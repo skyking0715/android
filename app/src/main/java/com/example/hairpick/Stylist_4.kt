@@ -61,7 +61,6 @@ class Stylist_4 : Fragment() {
     lateinit var binding:FragmentStylist4Binding
     lateinit var itembinding:Stylist4RequestitemBinding
     lateinit var db: FirebaseFirestore
-    //lateinit var storage: FirebaseStorage
     lateinit var firestore: FirebaseFirestore
     lateinit var collectionRef: CollectionReference
     lateinit var datas:MutableList<Request>

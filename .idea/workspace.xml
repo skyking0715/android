@@ -10,10 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46e8a759-b065-468d-b080-8ff763d8acb3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
@@ -22,7 +18,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
@@ -37,7 +32,6 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientBidFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientBidFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientChatFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientChatFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientMainPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ClientMainPage.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Client_3.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainFrame.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MainFrame.kt" afterDir="false" />
@@ -46,6 +40,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MyAccountApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/MyAccountApplication.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ShopInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/ShopInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistMainPage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistMainPage.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/StylistViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist_4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/Stylist_4.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/bidForm.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/bidForm.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/requestInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/hairpick/requestInfo.kt" afterDir="false" />

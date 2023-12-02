@@ -3,7 +3,7 @@
     android:id="@+id/item_root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="15dp"
     android:paddingBottom="10dp">
@@ -30,13 +30,44 @@
         app:layout_constraintStart_toEndOf="@+id/profileImgView"
         app:layout_constraintTop_toTopOf="@+id/profileImgView" />
 
-    <TextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="103dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="26dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/priceTextView">
+
+        <TextView
+            android:id="@+id/nameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="000 디자이너" />
+
+        <TextView
+            android:id="@+id/shopNameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="/ 00헤어 동성로점" />
+    </LinearLayout>
+
+    <!--<TextView
         android:id="@+id/designerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="디자이너 000/ 아보브헤어 동성로점"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profileImgView" />
+        app:layout_constraintStart_toEndOf="@+id/profileImgView" />-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
