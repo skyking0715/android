@@ -90,6 +90,7 @@ class SignInPage : AppCompatActivity() {
                             //유저 정보 존재시 mainFrame 페이지로 이동
                             val intentClient = Intent(applicationContext, MainFrame::class.java)
                             startActivity(intentClient)
+                            finish()
                         }else{
                             //유저 정보 없으면 signUpClient 페이지로 이동
                             val intentClient = Intent(applicationContext, SignUpClient::class.java)
@@ -127,6 +128,7 @@ class SignInPage : AppCompatActivity() {
                                 //유저 정보 존재시 mainFrame 페이지로 이동
                                 val intentClient = Intent(applicationContext, MainFrame_stylist::class.java)
                                 startActivity(intentClient)
+                                finish()
                             }else{
                                 //유저 정보 없으면 signUpDesigner 페이지로 이동
                                 val intentClient = Intent(applicationContext, SignUpDesigner::class.java)

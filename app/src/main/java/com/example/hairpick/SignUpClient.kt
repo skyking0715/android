@@ -121,8 +121,8 @@ class SignUpClient : AppCompatActivity() {
                     val docRef:DocumentReference=db.collection("clients").document(binding.idEdit.text.toString())
                     docRef.set(client)
                         .addOnSuccessListener {
-                            Log.d("Jeon", "ClientDatas added with ID : ${docRef.id}")
                             nextPageDialog()
+                            finish()
                         }
                         .addOnFailureListener {
                                 e->Log.w("jeon", "Error adding datas",e)

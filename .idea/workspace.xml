@@ -361,7 +361,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-function">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/hairpick/SignUpDesigner.kt</url>
-          <line>260</line>
+          <line>258</line>
           <properties class="com.example.hairpick.SignUpDesigner" method="openGallery">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

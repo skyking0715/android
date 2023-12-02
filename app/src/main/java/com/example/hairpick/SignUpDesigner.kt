@@ -220,10 +220,8 @@ class SignUpDesigner : AppCompatActivity() {
         val docRef: DocumentReference =db.collection("stylists").document(binding.emailEdit.text.toString())
         docRef.set(stylist)
             .addOnSuccessListener {
-                Log.d("Jeon", "StylistDatas added with ID : ${docRef.id}")
-
-                //shopImgSet(stylist.shopImg)
                 nextPageDialog()
+                finish()
             }
             .addOnFailureListener {
                     e->Log.w("jeon", "Error adding datas",e)

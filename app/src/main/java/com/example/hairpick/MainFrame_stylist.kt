@@ -4,6 +4,8 @@ import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.hairpick.databinding.ActivityMainFrameBinding
@@ -12,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainFrame_stylist : AppCompatActivity() {
+    var initTime=0L
     lateinit var db:FirebaseFirestore
     private lateinit var binding: ActivityMainFrameStylistBinding
     private val stylistMainFrame: StylistMainPage by lazy { StylistMainPage() }
@@ -102,6 +105,16 @@ class MainFrame_stylist : AppCompatActivity() {
             callback(null)
         }
 
+    }
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode== KeyEvent.KEYCODE_BACK){
+            if(System.currentTimeMillis()- initTime>3000){
+                Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                initTime=System.currentTimeMillis()
+                return true
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }

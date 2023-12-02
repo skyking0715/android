@@ -3,6 +3,8 @@ package com.example.hairpick
 import android.R
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.hairpick.databinding.ActivityMainFrameBinding
@@ -10,6 +12,7 @@ import com.google.android.material.tabs.TabLayout
 
 
 class MainFrame : AppCompatActivity() {
+    var initTime=0L
     private lateinit var binding: ActivityMainFrameBinding
     private val requestFrame: RequestPage by lazy { RequestPage() }
     private val clientMainFrame: ClientMainPage by lazy { ClientMainPage() }
@@ -76,6 +79,17 @@ class MainFrame : AppCompatActivity() {
 
 
         transaction.commit()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            if(System.currentTimeMillis()- initTime>3000){
+                Toast.makeText(this, "한번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                initTime=System.currentTimeMillis()
+                return true
+            }
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 
