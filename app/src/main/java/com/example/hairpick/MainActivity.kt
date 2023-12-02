@@ -54,6 +54,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.bookBtn.setOnClickListener {
+            val intent = Intent(this, ClientBooking::class.java)
+            startActivity(intent)
+        }
+
         setContentView(binding.root)
     }
 
