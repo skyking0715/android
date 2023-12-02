@@ -1,77 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SignUpClient"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:padding="10dp">
+    android:layout_height="match_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SignUpClient"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HairPick"
-        android:textSize="30dp"
-        android:layout_marginTop="60dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HairPick"
+            android:textSize="30dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
-    <ImageView
-        android:id="@+id/userImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/avatar"
-        android:layout_marginTop="20dp"/>
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="프로필 사진 변경"
-        android:textColor="@color/black"
-        android:background="#00ff0000"
-        style="?android:attr/borderlessButtonStyle"/>
+        <ImageView
+            android:id="@+id/userImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/avatar"
+            android:layout_marginTop="20dp"/>
+        <Button
+            android:id="@+id/uploadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프로필 사진 등록 +"
+            android:textColor="@color/black"
+            android:background="#00ff0000"
+            style="?android:attr/borderlessButtonStyle"/>
+        <EditText
+            android:id="@+id/idEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="아이디(이메일)"
+            />
 
-    <EditText
-        android:id="@+id/nameEdit"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:hint="이름"
-        android:layout_marginTop="20dp"
-        android:selectAllOnFocus="true"
-        android:maxLength="4"/>
-    <EditText
-        android:id="@+id/digitEdit"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:hint="전화번호"
-        android:layout_marginTop="10dp"
-        />
+        <EditText
+            android:id="@+id/nameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="이름"
+            android:layout_marginTop="20dp"
+            android:selectAllOnFocus="true"
+            android:maxLength="4"/>
 
-    <EditText
-        android:id="@+id/adressEdit"
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:hint="주소"
-        android:layout_marginTop="10dp"
-        />
+        <EditText
+            android:id="@+id/digitEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="전화번호"
+            android:layout_marginTop="10dp"
+            android:inputType="phone"
+            />
 
-    <Button
-        android:id="@+id/updateBtn"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:backgroundTint="#FFFE8EB7"
-        android:text="수정하기" />
+        <EditText
+            android:id="@+id/addressEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="주소"
+            android:layout_marginTop="10dp"
+            />
 
-
-
-
+        <Button
+            android:id="@+id/updateBtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:backgroundTint="#FFFE8EB7"
+            android:text="수정하기" />
 
 
 
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

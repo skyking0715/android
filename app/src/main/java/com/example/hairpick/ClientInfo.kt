@@ -21,5 +21,12 @@ class ClientInfo() {
         this.adress=address
     }
 
+    public fun setInfo2(img:String, name:String,num:String,address: String){
+        this.imgUrl=img
+        this.name=name
+        this.num=num
+        this.adress=address
+    }
+
 
 }

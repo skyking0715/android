@@ -93,6 +93,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="stylist_mainframe" />
+        <Button
+            android:id="@+id/update_client"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="update_client" />
 
 
     </LinearLayout>

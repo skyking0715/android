@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainFrame_stylist::class.java)
             startActivity(intent)
         }
+        binding.updateClient.setOnClickListener {
+            val intent = Intent(this, ClientInfoUpdate::class.java)
+            startActivity(intent)
+        }
 
         setContentView(binding.root)
     }

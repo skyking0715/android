@@ -96,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:hint="전화번호"
                 android:selectAllOnFocus="true"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:inputType="phone"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -153,6 +154,7 @@
         android:layout_height="wrap_content"
         android:hint="업장 번호"
         android:selectAllOnFocus="true"
+        android:inputType="phone"
         />
     <EditText
         android:id="@+id/addressEdit"

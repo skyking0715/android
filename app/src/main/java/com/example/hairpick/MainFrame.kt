@@ -1,6 +1,7 @@
 package com.example.hairpick
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -54,6 +55,11 @@ class MainFrame : AppCompatActivity() {
 
             }
         })
+
+        binding.profileBtn.setOnClickListener {
+            val intent = Intent(this, ClientInfoUpdate::class.java)
+            startActivity(intent)
+        }
     }
 
     //프래그먼트 한번 생성하면, 계속 재사용

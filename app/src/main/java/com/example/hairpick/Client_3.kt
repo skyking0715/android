@@ -123,8 +123,6 @@ class ShopAdapter(val datas: MutableList<Shop>): RecyclerView.Adapter<RecyclerVi
  * create an instance of this fragment.
  */
 class Client_3 : Fragment(){
-    lateinit var db: FirebaseFirestore
-    lateinit var storage: FirebaseStorage
     lateinit var firestore:FirebaseFirestore
     lateinit var collectionRef:CollectionReference
     lateinit var datas:MutableList<Shop>
@@ -139,9 +137,6 @@ class Client_3 : Fragment(){
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-        db= FirebaseFirestore.getInstance()
-        storage= Firebase.storage
         firestore=FirebaseFirestore.getInstance()
         collectionRef=firestore.collection("stylists")
         datas = mutableListOf<Shop>()
