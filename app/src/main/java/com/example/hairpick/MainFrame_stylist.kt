@@ -1,5 +1,6 @@
 package com.example.hairpick
 
+import android.content.Intent
 import android.graphics.PorterDuff
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -71,6 +72,11 @@ class MainFrame_stylist : AppCompatActivity() {
 
             }
         })
+
+        binding.profileBtn.setOnClickListener {
+            val intent = Intent(this, DesignerInfoUpdate::class.java)
+            startActivity(intent)
+        }
     }
     //프래그먼트 한번 생성하면, 계속 재사용
     private fun showHideFragment(selectedFragment: Fragment) {

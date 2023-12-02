@@ -137,11 +137,6 @@ class ClientInfoUpdate : AppCompatActivity() {
         binding.nameEdit.text=Editable.Factory.getInstance().newEditable(prevInfo.name)
         binding.addressEdit.text=Editable.Factory.getInstance().newEditable(prevInfo.adress)
         binding.digitEdit.text=Editable.Factory.getInstance().newEditable(prevInfo.num)
-
-        binding.nameEdit.selectAll()
-        binding.addressEdit.selectAll()
-        binding.digitEdit.selectAll()
-
     }
     fun update(client:ClientInfo){
         val storageRef= FirebaseStorage.getInstance().reference

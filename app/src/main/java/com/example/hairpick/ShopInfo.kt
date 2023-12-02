@@ -38,4 +38,11 @@ class ShopInfo() {
         this.priceList=priceList
     }
 
+    fun stylistandshopTxtset(name:String, num:String,shopName:String, shopDesc:String,shopNum:String, shopAddress:String, priceList:String)
+    {
+        this.name=name
+        this.num=num
+        shopInfoset(shopName,shopDesc,shopNum,shopAddress,priceList)
+    }
+
 }

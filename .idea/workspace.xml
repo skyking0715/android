@@ -99,7 +99,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\mingwan Jeon\.android\avd\Pixel_3a_API_34_extension_level_7_x86_64.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R3CN50B57JY]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -211,6 +211,9 @@
       <recent name="com.example.hairpick" />
     </key>
     <key name="android.template.1638153459">
+      <recent name="com.example.hairpick" />
+    </key>
+    <key name="android.template.2008606924">
       <recent name="com.example.hairpick" />
     </key>
     <key name="android.template.631289859">
