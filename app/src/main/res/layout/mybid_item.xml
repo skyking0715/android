@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mybidItem"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        >
+        <ImageView
+            android:id="@+id/mybidImg"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/grayprofile"
+
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/mybidTitle"
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="23dp"
+                android:text="손상모 시술 가능한가요?"
+                android:textAlignment="textEnd"
+                />
+            <TextView
+                android:id="@+id/mybidMoney"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="나의 제안가 : 100000원"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
