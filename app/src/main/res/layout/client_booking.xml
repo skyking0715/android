@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예 약"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="디자이너 정보"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bookingRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="날짜/시간 "
+                android:textStyle="bold"
+                android:paddingTop="50dp"
+                android:paddingBottom="10dp"
+                android:layout_marginLeft="10dp"/>
+
+
+            <CalendarView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/timeRecyclerview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"/>
+
+
+            <Button
+                android:id="@+id/bookBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FF5E96"
+                android:text="예약"
+                android:layout_marginTop="20dp"
+                />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

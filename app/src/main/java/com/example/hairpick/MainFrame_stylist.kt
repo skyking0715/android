@@ -22,6 +22,7 @@ class MainFrame_stylist : AppCompatActivity() {
     private val stylistShopFrame: StylistShop by lazy { StylistShop() }
     private val stylist4Frame: Stylist_4 by lazy { Stylist_4() }
     private val clientChatFrame: ClientChatFragment by lazy { ClientChatFragment() }
+    private val mybidPage : MybidPage by lazy { MybidPage() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         db= FirebaseFirestore.getInstance()
@@ -52,7 +53,7 @@ class MainFrame_stylist : AppCompatActivity() {
                     "home"->stylistMainFrame
                     "프로필"->stylistShopFrame
                     "의뢰하기"->stylist4Frame
-                    //"bid"->
+                    "bid"->mybidPage
                     "1:1채팅"->clientChatFrame
                     else ->stylistMainFrame
                 }
@@ -82,7 +83,7 @@ class MainFrame_stylist : AppCompatActivity() {
     private fun showHideFragment(selectedFragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
 
-        val fragments = listOf(stylistMainFrame,stylistShopFrame,stylist4Frame,clientChatFrame)
+        val fragments = listOf(stylistMainFrame,stylistShopFrame,stylist4Frame,mybidPage,clientChatFrame)
 
         for (fragment in fragments) {
             if (fragment != selectedFragment && fragment.isAdded) {
