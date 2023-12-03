@@ -41,7 +41,7 @@
 
         <activity
             android:name=".SignInPage"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".SignUpUser"
             android:exported="false" />
@@ -63,16 +63,17 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name=".Mainpage1"
+            android:exported="true"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Mainpage1"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Chatting"
             android:exported="false"

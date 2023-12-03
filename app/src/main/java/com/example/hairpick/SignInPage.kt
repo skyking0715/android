@@ -18,10 +18,11 @@ class SignInPage : AppCompatActivity() {
     lateinit var email:String
     lateinit var password:String
     lateinit  var db:FirebaseFirestore
+    lateinit var binding:ActivitySignInPageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding=ActivitySignInPageBinding.inflate(layoutInflater)
+        binding=ActivitySignInPageBinding.inflate(layoutInflater)
         auth=Firebase.auth
         setContentView(binding.root)
 
@@ -36,15 +37,16 @@ class SignInPage : AppCompatActivity() {
                 task->
                 if(task.isSuccessful){
                     val user = FirebaseAuth.getInstance().currentUser
+                    MyAccountApplication.email=email
                     if (user != null && MyAccountApplication.checkAuth()) {
                         // 사용자는 이메일 인증을 완료한 상태입니다.
-                        MyAccountApplication.email=email
+
                         //로그인 성공
                         nextPageDialog_Cli()
 
                     } else {
                         // 사용자는 이메일 인증을 완료하지 않은 상태입니다.
-                        authFail()
+                        Toast.makeText(baseContext,"전송된 메일로 이메일 인증을 진행해주세요.",Toast.LENGTH_SHORT).show()
                     }
 
                 }else{
@@ -82,7 +84,7 @@ class SignInPage : AppCompatActivity() {
                 if(p1== DialogInterface.BUTTON_POSITIVE){
 
                     db= FirebaseFirestore.getInstance()
-                    val document=db.collection("clients").document(email)
+                    val document=db.collection("clients").document(binding.idEdit.getText().toString())
                     document.get().addOnSuccessListener {
                         doc->
                         if(doc.data!=null){
@@ -121,7 +123,7 @@ class SignInPage : AppCompatActivity() {
 
 
                         db= FirebaseFirestore.getInstance()
-                        val document=db.collection("stylists").document(email)
+                        val document=db.collection("stylists").document(binding.idEdit.getText().toString())
                         document.get().addOnSuccessListener {
                                 doc->
                             if(doc.data!=null){

@@ -6,6 +6,8 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,6 +33,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
+import java.io.IOException
+import java.io.InputStream
 import java.lang.Exception
 
 class SignUpClient : AppCompatActivity() {
@@ -122,7 +126,7 @@ class SignUpClient : AppCompatActivity() {
                     docRef.set(client)
                         .addOnSuccessListener {
                             nextPageDialog()
-                            finish()
+
                         }
                         .addOnFailureListener {
                                 e->Log.w("jeon", "Error adding datas",e)
@@ -157,6 +161,7 @@ class SignUpClient : AppCompatActivity() {
                 selectedImageUri=it.data?.data //이미지 uri
                 if(selectedImageUri!=null){
                     imageUri=getRealPathFromURI(selectedImageUri!!).toUri()
+
                 }
                 //비트맵 이미지 크기 설정
                 val ratio = ImgSizeSet(
@@ -231,6 +236,7 @@ class SignUpClient : AppCompatActivity() {
                 if(p1==DialogInterface.BUTTON_POSITIVE){
                     val intent = Intent(applicationContext, MainFrame::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }
