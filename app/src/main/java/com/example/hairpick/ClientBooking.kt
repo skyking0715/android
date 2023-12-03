@@ -1,11 +1,14 @@
 package com.example.hairpick
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -111,11 +114,28 @@ class ClientBooking : AppCompatActivity() {
 
 
         binding.bookBtn.setOnClickListener{
-            Toast.makeText(this, "예약되었습니다.", Toast.LENGTH_SHORT).show()
-
+            //Toast.makeText(this, "예약되었습니다.", Toast.LENGTH_SHORT).show()
+            successDialog()
         }
 
 
+    }
+    fun successDialog(){
+        val btnHandler=object: DialogInterface.OnClickListener{
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                if(p1== DialogInterface.BUTTON_POSITIVE){
+                   finish()
+                }
+            }
+        }
+
+        AlertDialog.Builder(this).run{
+            setTitle("예약 성공")
+            setMessage("예약이 완료되었습니다")
+            setPositiveButton("확인",btnHandler)
+            setCancelable(false)
+            show()
+        }.setCanceledOnTouchOutside(false)
     }
 }
 

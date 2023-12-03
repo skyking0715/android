@@ -28,7 +28,6 @@ class Mainpage1 : AppCompatActivity() {
         }
         main1.accountNone.setOnClickListener{
 
-            Toast.makeText(applicationContext, "text Clicked", Toast.LENGTH_LONG).show()
             val intent = Intent(this, SignUpUser::class.java)
             startActivity(intent)
 
@@ -44,9 +43,5 @@ class Mainpage1 : AppCompatActivity() {
     }
 
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        Log.d("jung", "onSupportNavigateUp")
-//        return super.onSupportNavigateUp()
-//    }
 
 }

@@ -61,7 +61,7 @@
                 android:id="@+id/bookBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#FF5E96"
+                android:backgroundTint="#FFFE8EB7"
                 android:text="예약"
                 android:layout_marginTop="20dp"
                 />

@@ -1,10 +1,13 @@
 package com.example.hairpick
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hairpick.databinding.FragmentClientChatBinding
@@ -38,7 +41,7 @@ class MybidList(){
 }
 
 class MybidViewHolder(val binding: MybidItemBinding): RecyclerView.ViewHolder(binding.root)
-class MybidAdapter(val datas: MutableList<MybidList>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MybidAdapter(val activity:FragmentActivity,val datas: MutableList<MybidList>): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             RecyclerView.ViewHolder
             = MybidViewHolder(MybidItemBinding.inflate(LayoutInflater.from(parent.context),parent,false))
@@ -52,7 +55,8 @@ class MybidAdapter(val datas: MutableList<MybidList>): RecyclerView.Adapter<Recy
 
         //클릭 리스너
         holder.itemView.setOnClickListener {
-            itemClickListener.onClick(it, position)
+            val intent = Intent(activity, Chatting::class.java)
+            activity.startActivity(intent)
         }
     }
     override fun getItemCount(): Int {
@@ -109,9 +113,8 @@ class MybidPage : Fragment() {
 
         binding.mybidRecyclerview.layoutManager=layoutManager
 
-        val adapter = MybidAdapter(datas) //생성자 clickListener 추가
+        val adapter = MybidAdapter(requireActivity(),datas) //생성자 clickListener 추가
         binding.mybidRecyclerview.adapter = adapter
-
 
 
         return binding.root

@@ -1,5 +1,6 @@
 package com.example.hairpick
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -53,6 +54,10 @@ class Client4 : AppCompatActivity(),OnMapReadyCallback {
                 shopData=it.toObject(ShopInfo::class.java)
                 dataBinding(binding,shopData!!)
             }
+        }
+        binding.bookBtn.setOnClickListener {
+            val intent = Intent(this, ClientBooking::class.java)
+            startActivity(intent)
         }
     }
     fun dataBinding(binding:ActivityClient4Binding,shopData:ShopInfo){
