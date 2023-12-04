@@ -94,6 +94,9 @@ class MainFrame : AppCompatActivity() {
                 initTime=System.currentTimeMillis()
                 return true
             }
+            else {
+                finishAffinity() // This will finish all activities in the task
+            }
         }
         return super.onKeyDown(keyCode, event)
     }

@@ -97,6 +97,7 @@ class SignInPage : AppCompatActivity() {
                             //유저 정보 없으면 signUpClient 페이지로 이동
                             val intentClient = Intent(applicationContext, SignUpClient::class.java)
                             startActivity(intentClient)
+                            finish()
                         }
                     }
                         .addOnFailureListener{
@@ -135,6 +136,7 @@ class SignInPage : AppCompatActivity() {
                                 //유저 정보 없으면 signUpDesigner 페이지로 이동
                                 val intentClient = Intent(applicationContext, SignUpDesigner::class.java)
                                 startActivity(intentClient)
+                                finish()
                             }
                         }
                             .addOnFailureListener{

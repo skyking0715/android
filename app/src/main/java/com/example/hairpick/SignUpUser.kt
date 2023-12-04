@@ -63,6 +63,7 @@ class SignUpUser : AppCompatActivity() {
                 if(p1== DialogInterface.BUTTON_POSITIVE){
                     val intent = Intent(applicationContext, Mainpage1::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         }

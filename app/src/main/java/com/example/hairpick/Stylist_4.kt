@@ -60,7 +60,6 @@ class Request(){
 class Stylist_4 : Fragment() {
     lateinit var binding:FragmentStylist4Binding
     lateinit var itembinding:Stylist4RequestitemBinding
-    lateinit var db: FirebaseFirestore
     lateinit var firestore: FirebaseFirestore
     lateinit var collectionRef: CollectionReference
     lateinit var datas:MutableList<Request>
@@ -75,7 +74,6 @@ class Stylist_4 : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        db= FirebaseFirestore.getInstance()
 
         firestore=FirebaseFirestore.getInstance()
         collectionRef=firestore.collection("requests")
@@ -219,13 +217,24 @@ class S4Adapter(val datas: MutableList<Request>,val context: Context):
         val db = FirebaseFirestore.getInstance()
         val userID:String=userId.get(position)
         val reqCollectionRef = db.collection("requests").document(userID).collection("bids").document(MyAccountApplication.email.toString())
+        val bidCollectionRef = db.collection("stylists").document(MyAccountApplication.email.toString()).collection("bids").document(userID)
+        //고객에게 전송하는 입찰 데이터
         reqCollectionRef.set(suggest)
             .addOnSuccessListener {docRef->
                 successDialog(context)
+                //내 입찰 기록 저장
+                bidCollectionRef.set(suggest)
+                    .addOnSuccessListener {docRef->
+                        Log.d("Jeon", "데이터 저장 성공")
+                    }
+                    .addOnFailureListener {
+                        Log.d("Jeon", "데이터 저장 실패")
+                    }
             }
             .addOnFailureListener {
                 failDialog(context)
             }
+
     }
 
     fun successDialog(context: Context){

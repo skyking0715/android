@@ -146,10 +146,10 @@ class ClientInfoUpdate : AppCompatActivity() {
         uploadTask.addOnCompleteListener{
                 task->
             if(task.isSuccessful) {
-                Log.d("jeon", "이미지 스토리지에 업로드 성공")
                 // 이미지가 성공적으로 업로드되면 다운로드 URL을 가져옵니다.
                 imageRef.downloadUrl.addOnSuccessListener { uri ->
                     client.imgUrl = uri.toString()
+                    MyAccountApplication.profile=uri.toString()
 
                     val docRef: DocumentReference =firestore.collection("clients").document(binding.idEdit.text.toString())
                     docRef.set(client)

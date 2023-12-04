@@ -2,6 +2,7 @@ package com.example.hairpick
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.example.hairpick.databinding.FragmentClientChatBinding
 import com.example.hairpick.databinding.FragmentMybidPageBinding
 import com.example.hairpick.databinding.MybidItemBinding
 import com.example.hairpick.databinding.TimeTextItemBinding
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -119,6 +122,5 @@ class MybidPage : Fragment() {
 
         return binding.root
     }
-
 
 }
