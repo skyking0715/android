@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainFrame"
-    android:id="@+id/frameContent">
+    android:id="@+id/frameContent"
+    android:orientation="vertical">
 
    <RelativeLayout
+       android:id="@+id/upperbar"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
@@ -45,6 +47,16 @@
            />
 
    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/frameTabs"
+        android:layout_below="@id/upperbar"
+        android:layout_marginBottom="80dp"
+        >
+
+    </FrameLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/frameTabs"
@@ -86,14 +98,6 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/frameView"
-        android:layout_width="match_parent"
-        android:layout_height="575dp"
-       android:layout_alignBottom="@id/frameTabs"
-        android:layout_marginBottom="80dp"
-        >
 
-    </FrameLayout>
 
 </RelativeLayout>
