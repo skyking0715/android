@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.hairpick.databinding.ActivitySignUpUserBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -53,6 +54,7 @@ class SignUpUser : AppCompatActivity() {
             }
             else{
                 Log.w("jeon", "파이어베이스 등록 실패",task.exception)
+                Toast.makeText(baseContext,"${task.exception}", Toast.LENGTH_SHORT).show()
             }
 
         }
